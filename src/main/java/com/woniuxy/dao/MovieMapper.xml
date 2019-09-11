@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.dao.MovieMapper">
+  <resultMap id="BaseResultMap" type="com.woniuxy.domain.Movie">
+    <id column="movid" jdbcType="INTEGER" property="movid" />
+    <result column="minfo" jdbcType="VARCHAR" property="minfo" />
+    <result column="mrole" jdbcType="VARCHAR" property="mrole" />
+    <result column="mdirector" jdbcType="VARCHAR" property="mdirector" />
+    <result column="mduration" jdbcType="VARCHAR" property="mduration" />
+    <result column="mshowtime" jdbcType="DATE" property="mshowtime" />
+    <result column="mprevue" jdbcType="VARCHAR" property="mprevue" />
+    <result column="mposter" jdbcType="VARCHAR" property="mposter" />
+    <result column="mprice" jdbcType="DOUBLE" property="mprice" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    movid, minfo, mrole, mdirector, mduration, mshowtime, mprevue, mposter, mprice
+  </sql>
+  <select id="selectByExample" parameterType="com.woniuxy.domain.MovieExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from movie
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from movie
+    where movid = #{movid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from movie
+    where movid = #{movid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniuxy.domain.MovieExample">
+    delete from movie
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniuxy.domain.Movie">
+    insert into movie (movid, minfo, mrole, 
+      mdirector, mduration, mshowtime, 
+      mprevue, mposter, mprice
+      )
+    values (#{movid,jdbcType=INTEGER}, #{minfo,jdbcType=VARCHAR}, #{mrole,jdbcType=VARCHAR}, 
+      #{mdirector,jdbcType=VARCHAR}, #{mduration,jdbcType=VARCHAR}, #{mshowtime,jdbcType=DATE}, 
+      #{mprevue,jdbcType=VARCHAR}, #{mposter,jdbcType=VARCHAR}, #{mprice,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniuxy.domain.Movie">
+    insert into movie
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="movid != null">
+        movid,
+      </if>
+      <if test="minfo != null">
+        minfo,
+      </if>
+      <if test="mrole != null">
+        mrole,
+      </if>
+      <if test="mdirector != null">
+        mdirector,
+      </if>
+      <if test="mduration != null">
+        mduration,
+      </if>
+      <if test="mshowtime != null">
+        mshowtime,
+      </if>
+      <if test="mprevue != null">
+        mprevue,
+      </if>
+      <if test="mposter != null">
+        mposter,
+      </if>
+      <if test="mprice != null">
+        mprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="movid != null">
+        #{movid,jdbcType=INTEGER},
+      </if>
+      <if test="minfo != null">
+        #{minfo,jdbcType=VARCHAR},
+      </if>
+      <if test="mrole != null">
+        #{mrole,jdbcType=VARCHAR},
+      </if>
+      <if test="mdirector != null">
+        #{mdirector,jdbcType=VARCHAR},
+      </if>
+      <if test="mduration != null">
+        #{mduration,jdbcType=VARCHAR},
+      </if>
+      <if test="mshowtime != null">
+        #{mshowtime,jdbcType=DATE},
+      </if>
+      <if test="mprevue != null">
+        #{mprevue,jdbcType=VARCHAR},
+      </if>
+      <if test="mposter != null">
+        #{mposter,jdbcType=VARCHAR},
+      </if>
+      <if test="mprice != null">
+        #{mprice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniuxy.domain.MovieExample" resultType="java.lang.Long">
+    select count(*) from movie
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update movie
+    <set>
+      <if test="record.movid != null">
+        movid = #{record.movid,jdbcType=INTEGER},
+      </if>
+      <if test="record.minfo != null">
+        minfo = #{record.minfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mrole != null">
+        mrole = #{record.mrole,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mdirector != null">
+        mdirector = #{record.mdirector,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mduration != null">
+        mduration = #{record.mduration,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mshowtime != null">
+        mshowtime = #{record.mshowtime,jdbcType=DATE},
+      </if>
+      <if test="record.mprevue != null">
+        mprevue = #{record.mprevue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mposter != null">
+        mposter = #{record.mposter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mprice != null">
+        mprice = #{record.mprice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update movie
+    set movid = #{record.movid,jdbcType=INTEGER},
+      minfo = #{record.minfo,jdbcType=VARCHAR},
+      mrole = #{record.mrole,jdbcType=VARCHAR},
+      mdirector = #{record.mdirector,jdbcType=VARCHAR},
+      mduration = #{record.mduration,jdbcType=VARCHAR},
+      mshowtime = #{record.mshowtime,jdbcType=DATE},
+      mprevue = #{record.mprevue,jdbcType=VARCHAR},
+      mposter = #{record.mposter,jdbcType=VARCHAR},
+      mprice = #{record.mprice,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniuxy.domain.Movie">
+    update movie
+    <set>
+      <if test="minfo != null">
+        minfo = #{minfo,jdbcType=VARCHAR},
+      </if>
+      <if test="mrole != null">
+        mrole = #{mrole,jdbcType=VARCHAR},
+      </if>
+      <if test="mdirector != null">
+        mdirector = #{mdirector,jdbcType=VARCHAR},
+      </if>
+      <if test="mduration != null">
+        mduration = #{mduration,jdbcType=VARCHAR},
+      </if>
+      <if test="mshowtime != null">
+        mshowtime = #{mshowtime,jdbcType=DATE},
+      </if>
+      <if test="mprevue != null">
+        mprevue = #{mprevue,jdbcType=VARCHAR},
+      </if>
+      <if test="mposter != null">
+        mposter = #{mposter,jdbcType=VARCHAR},
+      </if>
+      <if test="mprice != null">
+        mprice = #{mprice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where movid = #{movid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniuxy.domain.Movie">
+    update movie
+    set minfo = #{minfo,jdbcType=VARCHAR},
+      mrole = #{mrole,jdbcType=VARCHAR},
+      mdirector = #{mdirector,jdbcType=VARCHAR},
+      mduration = #{mduration,jdbcType=VARCHAR},
+      mshowtime = #{mshowtime,jdbcType=DATE},
+      mprevue = #{mprevue,jdbcType=VARCHAR},
+      mposter = #{mposter,jdbcType=VARCHAR},
+      mprice = #{mprice,jdbcType=DOUBLE}
+    where movid = #{movid,jdbcType=INTEGER}
+  </update>
+</mapper>
