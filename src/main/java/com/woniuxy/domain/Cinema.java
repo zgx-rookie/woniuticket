@@ -16,5 +16,5 @@ public class Cinema {
 
     private Integer pid;
 
-
+   
 }

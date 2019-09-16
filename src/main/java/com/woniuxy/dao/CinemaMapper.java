@@ -27,6 +27,4 @@ public interface CinemaMapper {
     int updateByPrimaryKeySelective(Cinema record);
 
     int updateByPrimaryKey(Cinema record);
-   
-    List<Cinema> selectAll();
 }

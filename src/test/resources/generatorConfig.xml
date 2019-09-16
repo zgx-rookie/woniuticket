@@ -12,7 +12,19 @@
     
     <table schema="" tableName="cinema" ></table>
     <table schema="" tableName="picture" ></table>
-    
+    <table schema="" tableName="administrator" ></table>
+    <table schema="" tableName="cashticket" ></table>
+    <table schema="" tableName="evaluate" ></table>
+    <table schema="" tableName="groups" ></table>
+    <table schema="" tableName="movie" ></table>
+    <table schema="" tableName="orders" ></table>
+    <table schema="" tableName="paipian" ></table>
+    <table schema="" tableName="platform" ></table>
+    <table schema="" tableName="room" ></table>
+    <table schema="" tableName="seat" ></table>
+    <table schema="" tableName="ticket" ></table>
+    <table schema="" tableName="user" ></table>
+    <table schema="" tableName="viptable" ></table>
   </context>
 
 

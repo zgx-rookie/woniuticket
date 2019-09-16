@@ -1,11 +1,9 @@
 package com.woniuxy.domain;
 
-import java.io.Serializable;
-
 import lombok.Data;
 
 @Data
-public class Seat implements Serializable {
+public class Seat {
     private Integer sid;
 
     private Integer rid;
@@ -16,5 +14,5 @@ public class Seat implements Serializable {
 
     private String scolumn;
 
- 
+    
 }

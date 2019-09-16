@@ -1,11 +1,9 @@
 package com.woniuxy.domain;
 
-import java.io.Serializable;
-
 import lombok.Data;
 
 @Data
-public class Groups implements Serializable{
+public class Groups {
     private Integer gid;
 
     private String gname;
@@ -14,4 +12,5 @@ public class Groups implements Serializable{
 
     private Integer pid;
 
+    
 }

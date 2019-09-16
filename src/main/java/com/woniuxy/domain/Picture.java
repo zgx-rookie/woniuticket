@@ -10,5 +10,5 @@ public class Picture {
 
     private Integer cid;
 
-   
+    
 }
