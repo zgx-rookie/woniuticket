@@ -6,4 +6,4 @@ spring:
     password: java
     
 server:
-  port: 3312
+  port: 80
