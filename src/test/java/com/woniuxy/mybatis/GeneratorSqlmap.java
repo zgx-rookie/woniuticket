@@ -12,7 +12,7 @@ public class GeneratorSqlmap {
 	public void generator() throws Exception {
 		List<String> warnings = new ArrayList<String>();
 		boolean overwrite = true;
-		// ָ�� ���򹤳������ļ�
+		
 		File configFile = new File("src/test/resources/generatorConfig.xml");
 		ConfigurationParser cp = new ConfigurationParser(warnings);
 		Configuration config = cp.parseConfiguration(configFile);
