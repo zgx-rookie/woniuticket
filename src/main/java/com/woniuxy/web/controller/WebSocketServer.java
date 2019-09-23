@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 //socket发送消息给客户端
 @ServerEndpoint("/websocket")
 @Component
-public class WebSocketServer {
+public class WebSocketServer { 
 	
 	static Log log=LogFactory.getLog(WebSocketServer.class);
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
