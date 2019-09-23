@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @ServerEndpoint("/websocket")
 @Component
 public class WebSocketServer { 
-	
+	 
 	static Log log=LogFactory.getLog(WebSocketServer.class);
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static int onlineCount = 0;
