@@ -1,5 +1,7 @@
 package com.woniuxy.domain;
-
+/**
+ * 田普旭
+ */
 import java.util.Date;
 
 import lombok.Data;
@@ -17,5 +19,11 @@ public class Orders {
 
     private String ostate;
 
-   
+    private String minfo;
+    private String username;
+    
+    private String uphone;
+    
+    private Double mprice;
+    
 }
