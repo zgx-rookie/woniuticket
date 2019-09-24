@@ -1,3 +1,4 @@
+<!-- 田普旭 1-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -16,7 +17,11 @@
 <script type="application/x-javascript">
 	
 	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
 
 
 </script>
@@ -369,15 +374,16 @@
 			</div>
 			<div class="clearfix"></div>
 		</div>
-	
+
 		<!-- //header-ends -->
 		<!-- main content start-->
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
 					<h2 class="title1">订单管理</h2>
-						<!-- 图一 -->
-		<div id="container" style="min-width: 210px; height: 300px; margin: 0 auto"></div>
+					<!-- 图一 -->
+					<div id="container"
+						style="min-width: 210px; height: 300px; margin: 0 auto"></div>
 					<div class="panel-body widget-shadow" id="orders">
 
 
@@ -422,18 +428,15 @@
 							<button @click='find(pages.maxPage)' class="btn btn-info">末页</button>
 							<!-- layer框 -->
 						</div>
-<div id="test"
-						style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;display:none">
-						<br>用户名称:{{form.username}}<br>
-						<br>联系方式:{{form.uphone}}<br>
-						<br>电影:{{form.minfo}}<br>
-						<br>定价:{{form.mprice}}<br>
-						<br>付款金额:{{form.opaymoney}}<br>
-						<br>付款时间:{{form.opaytime|dfo}}<br>
+						<div id="test"
+							style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300; display: none">
+							<br>用户名称:{{form.username}}<br> <br>联系方式:{{form.uphone}}<br>
+							<br>电影:{{form.minfo}}<br> <br>定价:{{form.mprice}}<br>
+							<br>付款金额:{{form.opaymoney}}<br> <br>付款时间:{{form.opaytime|dfo}}<br>
+						</div>
+
 					</div>
-					
-					</div>
-					
+
 					<script>
 					Vue.filter("dfo",function(dateStr){
 						var d = new Date(dateStr);
@@ -608,32 +611,54 @@
 					    }) 
 					   
 						</script>
-					<!-- 图 -->
-<script type="text/javascript">
-Highcharts.chart('container', {
-    chart: {
-        type: 'area'
-    },
-    title: {
-        text: '电影订单统计表'
-    },
-    xAxis: {
-        categories: ['蜡笔小新', '复仇者联盟', '柯南', '小Q', '哪吒传奇']
-    },
-    credits: {
-        enabled: false
-    },
-    series: [{
-        name: '今日购票人次',
-        data: [5, 3, 4, 7, 2]
-    }, {
-        name: '近30天购票人次',
-        data: [2, -2, -3, 2, 1]
-    }]
-   
-});
-		</script>	
-						
+				<!-- 图 -->
+				<script type="text/javascript">
+$(document).ready(function (){
+	$.ajax({
+		url:"http://localhost/orders/days",
+		type:"get",
+		success:function(data){
+			
+			var ss = data[0];
+			console.log(ss);
+			console.log(typeof ss);
+			var bb = data[1];
+			console.log(bb);
+			
+			/* if(typeof ss ==='string'){
+				var bb =JSON.parse(ss);		
+			} */
+			
+			var jj = JSON.parse(ss);
+		
+			
+			$(function(){
+				
+				var chart = Highcharts.chart('container', {
+				    chart: {
+				        type: 'area'
+				    },
+				    title: {
+				        text: '电影订单统计表'
+				    },
+				    xAxis: {
+				    	categories:['哪吒传奇','复仇者联盟','小Q','柯南','蜡笔小新']
+				    },
+				    credits: {
+				        enabled: false
+				    },
+				    series: jj
+		})
+	})
+	
+		}
+	})
+})
+
+
+
+
+		</script>
 </body>
 
 </html>
