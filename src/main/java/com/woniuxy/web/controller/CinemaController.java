@@ -23,9 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.woniuxy.domain.Cinema;
 import com.woniuxy.domain.Page;
-import com.woniuxy.domain.Picture;
+
 import com.woniuxy.service.ICinemaService;
-import com.woniuxy.service.IPictureService;
+
 
 @Controller
 @RequestMapping("cinemas")
@@ -34,8 +34,7 @@ public class CinemaController {
 	@Autowired
 	ICinemaService service;
 	
-	@Autowired
-	IPictureService service2;
+	
 	
 	@PostMapping  
 	@ResponseBody
@@ -84,7 +83,8 @@ public class CinemaController {
 	@GetMapping
 	@ResponseBody
 	public Page<Cinema> findByPage(@RequestParam Integer page,String cname){
-		System.out.println(page+"   "+cname);
+		System.out.println("123456");
+		System.out.println(page+""+cname);
 		Cinema cinema=new Cinema();
 		cinema.setCname(cname);
 		Page<Cinema> p = service.findByPage(cinema,page,5);

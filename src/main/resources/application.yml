@@ -1,11 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-<<<<<<< HEAD
-<<<<<<< HEAD
-    url: jdbc:mysql://localhost:3306/woniuticket?allowMultiQueries=true
+    url: jdbc:mysql://192.168.7.120:3306/woniuticket?allowMultiQueries=true
     username: root
-    password: root
+    password: java
   mvc:
     view:
       prefix: /
@@ -22,19 +20,4 @@ logging:
     
     
   
-=======
-    url: jdbc:mysql://localhost:3306/woniuticket?characterEncoding=utf8
-    username: root
-    password: java
-    
-server:
-  port: 80
->>>>>>> branch 'master' of git@github.com:zgx-rookie/woniuticket.git
-=======
-    url: jdbc:mysql://localhost:3306/woniuticket?characterEncoding=utf8
-    username: root
-    password: java
-    
-server:
-  port: 80
->>>>>>> branch 'master' of git@github.com:zgx-rookie/woniuticket.git
+
