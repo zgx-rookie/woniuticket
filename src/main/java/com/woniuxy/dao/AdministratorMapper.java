@@ -1,11 +1,19 @@
 package com.woniuxy.dao;
 
+
 import com.woniuxy.domain.Administrator;
 import com.woniuxy.domain.AdministratorExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+
+import com.woniuxy.domain.Administrator;
+import com.woniuxy.domain.AdministratorExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+     
 public interface AdministratorMapper {
+	
     long countByExample(AdministratorExample example);
 
     int deleteByExample(AdministratorExample example);

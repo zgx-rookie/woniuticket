@@ -6,7 +6,11 @@ import java.util.List;
 public class AdministratorExample {
     protected String orderByClause;
 
+<<<<<<< HEAD
     protected boolean distinct;
+=======
+    protected boolean distinct;   
+>>>>>>> branch 'master' of git@github.com:zgx-rookie/woniuticket.git
 
     protected List<Criteria> oredCriteria;
 

@@ -6,6 +6,7 @@
 		<property name="suppressAllComments" value="true" />
 	</commentGenerator>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/woniuticket?characterEncoding=utf-8" userId="root" password="root"/>
     <javaModelGenerator targetPackage="com.woniuxy.domain" targetProject=".\src\main\java" ></javaModelGenerator>
     <sqlMapGenerator targetPackage="com.woniuxy.dao" targetProject=".\src\main\java" ></sqlMapGenerator>
@@ -26,6 +27,28 @@
     <table schema="" tableName="ticket" ></table>
     <table schema="" tableName="user" ></table>
     <table schema="" tableName="viptable" ></table>
+=======
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/woniuticket?characterEncoding=utf-8" userId="root" password="java"/>
+    <javaModelGenerator targetPackage="com.woniuxy.domain" targetProject=".\src\main\java" ></javaModelGenerator>
+    <sqlMapGenerator targetPackage="com.woniuxy.dao" targetProject=".\src\main\java" ></sqlMapGenerator>
+    <javaClientGenerator targetPackage="com.woniuxy.dao" targetProject=".\src\main\java" type="XMLMAPPER" />
+    
+    <table schema="" tableName="cinema" ></table>
+   <!--  <table schema="" tableName="picture" ></table> -->
+    <!-- <table schema="" tableName="administrator" ></table>
+    <table schema="" tableName="cashticket" ></table>
+    <table schema="" tableName="evaluate" ></table>
+    <table schema="" tableName="groups" ></table>
+    <table schema="" tableName="movie" ></table>
+    <table schema="" tableName="orders" ></table>
+    <table schema="" tableName="paipian" ></table>
+    <table schema="" tableName="platform" ></table>
+    <table schema="" tableName="room" ></table>
+    <table schema="" tableName="seat" ></table>
+    <table schema="" tableName="ticket" ></table>
+    <table schema="" tableName="user" ></table>
+    <table schema="" tableName="viptable" ></table> -->
+>>>>>>> branch 'master' of git@github.com:zgx-rookie/woniuticket.git
 =======
     <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/woniuticket?characterEncoding=utf-8" userId="root" password="java"/>
     <javaModelGenerator targetPackage="com.woniuxy.domain" targetProject=".\src\main\java" ></javaModelGenerator>

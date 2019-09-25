@@ -2,11 +2,6 @@
 <faceted-project>
   <fixed facet="wst.jsdt.web"/>
   <installed facet="java" version="1.8"/>
-<<<<<<< HEAD
   <installed facet="jst.web" version="2.5"/>
   <installed facet="wst.jsdt.web" version="1.0"/>
-=======
-  <installed facet="wst.jsdt.web" version="1.0"/>
-  <installed facet="jst.web" version="4.0"/>
->>>>>>> branch 'master' of git@github.com:zgx-rookie/woniuticket.git
 </faceted-project>

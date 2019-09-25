@@ -6,6 +6,13 @@
     <result column="pname" jdbcType="VARCHAR" property="pname" />
     <result column="ppassword" jdbcType="VARCHAR" property="ppassword" />
   </resultMap>
+<<<<<<< HEAD
+=======
+  <select id="findAll" resultMap="BaseResultMap">
+  	select * from platform
+  </select>
+  
+>>>>>>> branch 'master' of git@github.com:zgx-rookie/woniuticket.git
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

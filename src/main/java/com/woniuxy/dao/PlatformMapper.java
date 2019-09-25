@@ -6,6 +6,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface PlatformMapper {
+<<<<<<< HEAD
+=======
+	
+	List<Platform> findAll();
+	
+>>>>>>> branch 'master' of git@github.com:zgx-rookie/woniuticket.git
     long countByExample(PlatformExample example);
 
     int deleteByExample(PlatformExample example);
