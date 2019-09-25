@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.dao.ViptableMapper">
+  <resultMap id="BaseResultMap" type="com.woniuxy.domain.Viptable">
+    <id column="vid" jdbcType="INTEGER" property="vid" />
+    <result column="vgrade" jdbcType="VARCHAR" property="vgrade" />
+    <result column="vdiscount" jdbcType="DOUBLE" property="vdiscount" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    vid, vgrade, vdiscount, uid
+  </sql>
+  <select id="selectByExample" parameterType="com.woniuxy.domain.ViptableExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from viptable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from viptable
+    where vid = #{vid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from viptable
+    where vid = #{vid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniuxy.domain.ViptableExample">
+    delete from viptable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniuxy.domain.Viptable">
+    insert into viptable (vid, vgrade, vdiscount, 
+      uid)
+    values (#{vid,jdbcType=INTEGER}, #{vgrade,jdbcType=VARCHAR}, #{vdiscount,jdbcType=DOUBLE}, 
+      #{uid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniuxy.domain.Viptable">
+    insert into viptable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vid != null">
+        vid,
+      </if>
+      <if test="vgrade != null">
+        vgrade,
+      </if>
+      <if test="vdiscount != null">
+        vdiscount,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vid != null">
+        #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="vgrade != null">
+        #{vgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="vdiscount != null">
+        #{vdiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniuxy.domain.ViptableExample" resultType="java.lang.Long">
+    select count(*) from viptable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update viptable
+    <set>
+      <if test="record.vid != null">
+        vid = #{record.vid,jdbcType=INTEGER},
+      </if>
+      <if test="record.vgrade != null">
+        vgrade = #{record.vgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vdiscount != null">
+        vdiscount = #{record.vdiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update viptable
+    set vid = #{record.vid,jdbcType=INTEGER},
+      vgrade = #{record.vgrade,jdbcType=VARCHAR},
+      vdiscount = #{record.vdiscount,jdbcType=DOUBLE},
+      uid = #{record.uid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniuxy.domain.Viptable">
+    update viptable
+    <set>
+      <if test="vgrade != null">
+        vgrade = #{vgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="vdiscount != null">
+        vdiscount = #{vdiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where vid = #{vid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniuxy.domain.Viptable">
+    update viptable
+    set vgrade = #{vgrade,jdbcType=VARCHAR},
+      vdiscount = #{vdiscount,jdbcType=DOUBLE},
+      uid = #{uid,jdbcType=INTEGER}
+    where vid = #{vid,jdbcType=INTEGER}
+  </update>
+</mapper>
