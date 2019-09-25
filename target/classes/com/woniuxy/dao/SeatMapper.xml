@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.woniuxy.dao.PictureMapper">
-  <resultMap id="BaseResultMap" type="com.woniuxy.domain.Picture">
-    <id column="pcid" jdbcType="INTEGER" property="pcid" />
-    <result column="pinfo" jdbcType="VARCHAR" property="pinfo" />
-    <result column="cid" jdbcType="INTEGER" property="cid" />
+<mapper namespace="com.woniuxy.dao.SeatMapper">
+  <resultMap id="BaseResultMap" type="com.woniuxy.domain.Seat">
+    <id column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="rid" jdbcType="INTEGER" property="rid" />
+    <result column="sstate" jdbcType="VARCHAR" property="sstate" />
+    <result column="srow" jdbcType="VARCHAR" property="srow" />
+    <result column="scolumn" jdbcType="VARCHAR" property="scolumn" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    pcid, pinfo, cid
+    sid, rid, sstate, srow, scolumn
   </sql>
-  <select id="selectByExample" parameterType="com.woniuxy.domain.PictureExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.woniuxy.domain.SeatExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from picture
+    from seat
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,67 +86,85 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from picture
-    where cid = #{cid,jdbcType=INTEGER}
+    from seat
+    where sid = #{sid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from picture
-    where pcid = #{pcid,jdbcType=INTEGER}
+    delete from seat
+    where sid = #{sid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.woniuxy.domain.PictureExample">
-    delete from picture
+  <delete id="deleteByExample" parameterType="com.woniuxy.domain.SeatExample">
+    delete from seat
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.woniuxy.domain.Picture">
-    insert into picture (pcid, pinfo, cid
-      )
-    values (#{pcid,jdbcType=INTEGER}, #{pinfo,jdbcType=VARCHAR}, #{cid,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.woniuxy.domain.Seat">
+    insert into seat (sid, rid, sstate, 
+      srow, scolumn)
+    values (#{sid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, #{sstate,jdbcType=VARCHAR}, 
+      #{srow,jdbcType=VARCHAR}, #{scolumn,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.woniuxy.domain.Picture">
-    insert into picture
+  <insert id="insertSelective" parameterType="com.woniuxy.domain.Seat">
+    insert into seat
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="pcid != null">
-        pcid,
+      <if test="sid != null">
+        sid,
       </if>
-      <if test="pinfo != null">
-        pinfo,
+      <if test="rid != null">
+        rid,
       </if>
-      <if test="cid != null">
-        cid,
+      <if test="sstate != null">
+        sstate,
+      </if>
+      <if test="srow != null">
+        srow,
+      </if>
+      <if test="scolumn != null">
+        scolumn,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="pcid != null">
-        #{pcid,jdbcType=INTEGER},
+      <if test="sid != null">
+        #{sid,jdbcType=INTEGER},
       </if>
-      <if test="pinfo != null">
-        #{pinfo,jdbcType=VARCHAR},
+      <if test="rid != null">
+        #{rid,jdbcType=INTEGER},
       </if>
-      <if test="cid != null">
-        #{cid,jdbcType=INTEGER},
+      <if test="sstate != null">
+        #{sstate,jdbcType=VARCHAR},
+      </if>
+      <if test="srow != null">
+        #{srow,jdbcType=VARCHAR},
+      </if>
+      <if test="scolumn != null">
+        #{scolumn,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.woniuxy.domain.PictureExample" resultType="java.lang.Long">
-    select count(*) from picture
+  <select id="countByExample" parameterType="com.woniuxy.domain.SeatExample" resultType="java.lang.Long">
+    select count(*) from seat
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update picture
+    update seat
     <set>
-      <if test="record.pcid != null">
-        pcid = #{record.pcid,jdbcType=INTEGER},
+      <if test="record.sid != null">
+        sid = #{record.sid,jdbcType=INTEGER},
       </if>
-      <if test="record.pinfo != null">
-        pinfo = #{record.pinfo,jdbcType=VARCHAR},
+      <if test="record.rid != null">
+        rid = #{record.rid,jdbcType=INTEGER},
       </if>
-      <if test="record.cid != null">
-        cid = #{record.cid,jdbcType=INTEGER},
+      <if test="record.sstate != null">
+        sstate = #{record.sstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srow != null">
+        srow = #{record.srow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scolumn != null">
+        scolumn = #{record.scolumn,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -152,30 +172,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update picture
-    set pcid = #{record.pcid,jdbcType=INTEGER},
-      pinfo = #{record.pinfo,jdbcType=VARCHAR},
-      cid = #{record.cid,jdbcType=INTEGER}
+    update seat
+    set sid = #{record.sid,jdbcType=INTEGER},
+      rid = #{record.rid,jdbcType=INTEGER},
+      sstate = #{record.sstate,jdbcType=VARCHAR},
+      srow = #{record.srow,jdbcType=VARCHAR},
+      scolumn = #{record.scolumn,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.woniuxy.domain.Picture">
-    update picture
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniuxy.domain.Seat">
+    update seat
     <set>
-      <if test="pinfo != null">
-        pinfo = #{pinfo,jdbcType=VARCHAR},
+      <if test="rid != null">
+        rid = #{rid,jdbcType=INTEGER},
       </if>
-      <if test="cid != null">
-        cid = #{cid,jdbcType=INTEGER},
+      <if test="sstate != null">
+        sstate = #{sstate,jdbcType=VARCHAR},
+      </if>
+      <if test="srow != null">
+        srow = #{srow,jdbcType=VARCHAR},
+      </if>
+      <if test="scolumn != null">
+        scolumn = #{scolumn,jdbcType=VARCHAR},
       </if>
     </set>
-    where pcid = #{pcid,jdbcType=INTEGER}
+    where sid = #{sid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.woniuxy.domain.Picture">
-    update picture
-    set pinfo = #{pinfo,jdbcType=VARCHAR},
-      cid = #{cid,jdbcType=INTEGER}
-    where pcid = #{pcid,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.woniuxy.domain.Seat">
+    update seat
+    set rid = #{rid,jdbcType=INTEGER},
+      sstate = #{sstate,jdbcType=VARCHAR},
+      srow = #{srow,jdbcType=VARCHAR},
+      scolumn = #{scolumn,jdbcType=VARCHAR}
+    where sid = #{sid,jdbcType=INTEGER}
   </update>
 </mapper>

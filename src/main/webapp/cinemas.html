@@ -443,7 +443,7 @@
 							<td><img :src="item.cpicture" width="50px" height="50px"></td>
 							
 								<!-- data-toggle="modal" 控制模态框展示       data-dismiss="modal"  控制模态框消失-->
-							<td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#myModal" @click="get(item)" >修改</button> | <button class="btn btn-danger" type="button" @click="del(item.cid)">删除</button> </td>
+							<td><button  ref="p" class="btn btn-warning" type="button" data-toggle="modal" data-target="#myModal" @click="get(item)" >修改</button> | <button class="btn btn-danger" type="button" @click="del(item.cid)">删除</button> </td>
 							</tr>
 							<tr>
 							
@@ -452,7 +452,7 @@
 								<button type="button"  @click="prev">上一页</button>
 								<font ref="skip">
 									<a v-for="n in num" :class="[flag?'state1':'state2']">
-									<button v-model="n1==page.page?flag=true:flag=false" size="1" >{{n+"\t"}}</button>
+									<button v-model="n1==page.page?flag=true:flag=false" size="1" @click="nowPage">{{n+"\t"}}</button>
 									</a>
 								</font>
 								
@@ -562,7 +562,7 @@
 				this.find(0,this.cname);
 			},
 			last(){
-				this.find(this.page.allPage,this.cname);
+				this.find(this.page.maxPage,this.cname);
 			},
 			prev(){
 				this.find(this.page.prev,this.cname);
@@ -572,6 +572,9 @@
 			},
 			search(){
 				this.find(this.p,this.cname);
+			},
+			nowPage(){
+				console.log(this.$refs.p.innerHTML)
 			}
 		}
 			

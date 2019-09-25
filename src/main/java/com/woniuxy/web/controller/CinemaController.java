@@ -34,9 +34,6 @@ public class CinemaController {
 	@Autowired
 	ICinemaService service;
 	
-	@Autowired
-	IPictureService service2;
-	
 	@PostMapping  
 	@ResponseBody
 	public void save(@RequestBody MultipartFile logo,MultipartFile pinfo,Cinema cinema,HttpServletRequest req) throws IOException, InterruptedException {
