@@ -51,9 +51,11 @@ public class CinemaService implements ICinemaService {
 		System.out.println("page()");
 		Integer allRow = mapper.getRow(cinema);
 		
+
 		Page<Cinema> page=new Page<Cinema>(pages[0],allRow,pages[1]);
 		cinema.setStartLine((page.getP()-1)*page.getSize());
 		cinema.setRow(page.getSize());
+
 		List<Cinema> list = mapper.findByPage(cinema);
 		page.setList(list);
 		System.out.println(cinema.getCname()+"    "+cinema.getCid());

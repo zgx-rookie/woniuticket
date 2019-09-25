@@ -3,7 +3,6 @@
 <mapper namespace="com.woniuxy.dao.CinemaMapper">
   <resultMap id="BaseResultMap" type="com.woniuxy.domain.Cinema">
     <id column="cid" jdbcType="INTEGER" property="cid" />
-
     <result column="cname" jdbcType="VARCHAR" property="cname" />
     <result column="clogo" jdbcType="VARCHAR" property="clogo" />
     <result column="ccoperight" jdbcType="VARCHAR" property="ccoperight" />
