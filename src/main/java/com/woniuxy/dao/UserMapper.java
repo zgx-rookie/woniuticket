@@ -1,7 +1,5 @@
 package com.woniuxy.dao;
-/**
- * 田普旭
- */
+
 import com.woniuxy.domain.User;
 import com.woniuxy.domain.UserExample;
 import java.util.List;
@@ -29,8 +27,4 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
-    
-    int selectCount();
-    
-    List<User> findBySize(@Param("startLine") int startLine,@Param("size") int size);
 }

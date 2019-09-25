@@ -272,11 +272,4 @@
       ubalance = #{ubalance,jdbcType=DOUBLE}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
-   <select id="selectCount" resultType="Integer">
-   select count(uid) from user
-   </select>
-  <select id="findBySize" resultMap="BaseResultMap" parameterType="com.woniuxy.domain.User">
-  select *from user limit #{startLine},#{size}
-  </select>
-
 </mapper>

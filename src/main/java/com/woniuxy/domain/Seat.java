@@ -1,18 +1,22 @@
 package com.woniuxy.domain;
 
+import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 
 @Data
-public class Seat {
+public class Seat implements Serializable{
     private Integer sid;
 
-    private Integer rid;
+    private Object rid;
 
-    private String sstate;
+    private Object sstate;
 
     private String srow;
 
     private String scolumn;
+    
 
     
 }

@@ -1,5 +1,6 @@
 package com.woniuxy.dao;
 
+import com.woniuxy.domain.Page;
 import com.woniuxy.domain.Room;
 import com.woniuxy.domain.RoomExample;
 import java.util.List;
@@ -27,4 +28,12 @@ public interface RoomMapper {
     int updateByPrimaryKeySelective(Room record);
 
     int updateByPrimaryKey(Room record);
+    
+    
+    int save(Room record);
+    
+    int selectCount();
+    
+    List<Room> findBySize(@Param("startLine") int startLine, @Param("size") int size);
+    
 }

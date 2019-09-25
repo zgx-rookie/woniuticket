@@ -3,6 +3,8 @@ package com.woniuxy.dao;
 import com.woniuxy.domain.Seat;
 import com.woniuxy.domain.SeatExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface SeatMapper {
@@ -18,7 +20,7 @@ public interface SeatMapper {
 
     List<Seat> selectByExample(SeatExample example);
 
-    Seat selectByPrimaryKey(Integer sid);
+    Seat selectByPrimaryKey(Integer rid);
 
     int updateByExampleSelective(@Param("record") Seat record, @Param("example") SeatExample example);
 
@@ -27,4 +29,13 @@ public interface SeatMapper {
     int updateByPrimaryKeySelective(Seat record);
 
     int updateByPrimaryKey(Seat record);
+    
+    int save(Seat seat);
+    
+    Seat findByRid(Integer rid);
+    
+    List<Map> findByRid1(Integer rid);
+    
+    int delByRid(Integer rid);
+
 }

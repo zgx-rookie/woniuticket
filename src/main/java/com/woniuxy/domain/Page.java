@@ -23,7 +23,7 @@ public class Page<T> {
 		private int startPage;
 		//结束页
 		private int endPage;
-		private List<User> list;
+		private List<Room> list;
 		public int getP() {
 			return p;
 		}
@@ -81,10 +81,10 @@ public class Page<T> {
 		
 		
 
-		public List<User> getList() {
+		public List<Room> getList() {
 			return list;
 		}
-		public void setList(List<User> list) {
+		public void setList(List<Room> list) {
 			this.list = list;
 		}
 		public Page(int pg,int rc,int sz) {

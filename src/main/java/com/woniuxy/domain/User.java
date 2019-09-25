@@ -1,7 +1,5 @@
 package com.woniuxy.domain;
-/**
- * 田普旭
- */
+
 import java.util.Date;
 
 import lombok.Data;
@@ -25,5 +23,5 @@ public class User {
 
     private Double ubalance;
 
-    private Integer startLine;
+    
 }
