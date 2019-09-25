@@ -48,9 +48,12 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot/2.1.8.RELEASE/spring-boot-2.1.8.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-autoconfigure/2.1.8.RELEASE/spring-boot-autoconfigure-2.1.8.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/alibaba/druid/1.1.19/druid-1.1.19.jar" enabled="true" runInBatchMode="false"/>
+<<<<<<< HEAD
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/boot/spring-boot-starter-websocket/2.1.8.RELEASE/spring-boot-starter-websocket-2.1.8.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-messaging/5.1.9.RELEASE/spring-messaging-5.1.9.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-websocket/5.1.9.RELEASE/spring-websocket-5.1.9.RELEASE.jar" enabled="true" runInBatchMode="false"/>
+=======
+>>>>>>> branch 'master' of git@github.com:zgx-rookie/woniuticket.git
     <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.9.9.3/jackson-databind-2.9.9.3.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.9.9/jackson-core-2.9.9.jar" enabled="true" runInBatchMode="false"/>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
     <wb-module deploy-name="woniuticket-0.0.1-SNAPSHOT">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
@@ -7,5 +8,15 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
         <property name="context-root" value="woniuticket"/>
         <property name="java-output-path" value="/woniuticket/target/classes"/>
+=======
+    <wb-module deploy-name="woniuticket3-0.0.1-SNAPSHOT">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
+        <property name="java-output-path" value="/woniuticket2/target/classes"/>
+        <property name="context-root" value="woniuticket3"/>
+>>>>>>> branch 'master' of git@github.com:zgx-rookie/woniuticket.git
     </wb-module>
 </project-modules>
