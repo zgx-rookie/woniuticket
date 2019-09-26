@@ -1,7 +1,5 @@
 package com.woniuxy.domain;
 
-
-//田普旭
 import java.util.List;
 
 import lombok.Data;
@@ -26,6 +24,95 @@ public class Page<T> {
 		//结束页
 		private int endPage;
 		private List<T> list;
+		
+		private String name;
+		
+		private String mtype;
+		
+		
+		
+		public String getMtype() {
+			return mtype;
+		}
+		public void setMtype(String mtype) {
+			this.mtype = mtype;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public int getP() {
+			return p;
+		}
+		public void setP(int p) {
+			this.p = p;
+		}
+		public int getRowCount() {
+			return rowCount;
+		}
+		public void setRowCount(int rowCount) {
+			this.rowCount = rowCount;
+		}
+		public int getMaxPage() {
+			return maxPage;
+		}
+		public void setMaxPage(int maxPage) {
+			this.maxPage = maxPage;
+		}
+		public int getPrev() {
+			return prev;
+		}
+		public void setPrev(int prev) {
+			this.prev = prev;
+		}
+		public int getNext() {
+			return next;
+		}
+		public void setNext(int next) {
+			this.next = next;
+		}
+		public int getStartLine() {
+			return startLine;
+		}
+		public void setStartLine(int startLine) {
+			this.startLine = startLine;
+		}
+		public int getSize() {
+			return size;
+		}
+		public void setSize(int size) {
+			this.size = size;
+		}
+		public int getStartPage() {
+			return startPage;
+		}
+		public void setStartPage(int startPage) {
+			this.startPage = startPage;
+		}
+		public int getEndPage() {
+			return endPage;
+		}
+		public void setEndPage(int endPage) {
+			this.endPage = endPage;
+		}
+		
+		
+
+		public List<T> getList() {
+			return list;
+		}
+		public void setList(List<T> list) {
+			this.list = list;
+		}
+		
+		
+		
+		
+		
+		
+		
 		
 		public Page(int pg,int rc,int sz) {
 			p = pg;
@@ -57,6 +144,16 @@ public class Page<T> {
 			}
 			
 		}
-
-
+		@Override
+		public String toString() {
+			return "Page [p=" + p + ", rowCount=" + rowCount + ", maxPage=" + maxPage + ", prev=" + prev + ", next="
+					+ next + ", startLine=" + startLine + ", size=" + size + ", startPage=" + startPage + ", endPage="
+					+ endPage + ", list=" + list + ", name=" + name + ", mtype=" + mtype + "]";
+		}
+		
+		
+		
+		
+		
+		
 }
