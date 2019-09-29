@@ -32,9 +32,7 @@ public interface SeatMapper {
     
     int save(Seat seat);
     
-    Seat findByRid(Integer rid);
-    
-    List<Map> findByRid1(Integer rid);
+    List<Seat> findByRid(Integer rid);
     
     int delByRid(Integer rid);
 

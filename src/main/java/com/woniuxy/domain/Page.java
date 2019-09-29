@@ -23,7 +23,26 @@ public class Page<T> {
 		private int startPage;
 		//结束页
 		private int endPage;
-		private List<Room> list;
+		private List<T> list;
+		
+		private String name;
+		
+		private String mtype;
+		
+		
+		
+		public String getMtype() {
+			return mtype;
+		}
+		public void setMtype(String mtype) {
+			this.mtype = mtype;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
 		public int getP() {
 			return p;
 		}
@@ -81,12 +100,20 @@ public class Page<T> {
 		
 		
 
-		public List<Room> getList() {
+		public List<T> getList() {
 			return list;
 		}
-		public void setList(List<Room> list) {
+		public void setList(List<T> list) {
 			this.list = list;
 		}
+		
+		
+		
+		
+		
+		
+		
+		
 		public Page(int pg,int rc,int sz) {
 			p = pg;
 			rowCount = rc;
@@ -117,4 +144,16 @@ public class Page<T> {
 			}
 			
 		}
+		@Override
+		public String toString() {
+			return "Page [p=" + p + ", rowCount=" + rowCount + ", maxPage=" + maxPage + ", prev=" + prev + ", next="
+					+ next + ", startLine=" + startLine + ", size=" + size + ", startPage=" + startPage + ", endPage="
+					+ endPage + ", list=" + list + ", name=" + name + ", mtype=" + mtype + "]";
+		}
+		
+		
+		
+		
+		
+		
 }

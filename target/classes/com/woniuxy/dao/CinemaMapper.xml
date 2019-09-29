@@ -3,10 +3,12 @@
 <mapper namespace="com.woniuxy.dao.CinemaMapper">
   <resultMap id="BaseResultMap" type="com.woniuxy.domain.Cinema">
     <id column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="cname" jdbcType="VARCHAR" property="cname" />
     <result column="clogo" jdbcType="VARCHAR" property="clogo" />
     <result column="ccoperight" jdbcType="VARCHAR" property="ccoperight" />
     <result column="caddress" jdbcType="VARCHAR" property="caddress" />
     <result column="cfacility" jdbcType="VARCHAR" property="cfacility" />
+    <result column="cpicture" jdbcType="VARCHAR" property="cpicture" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    cid, clogo, ccoperight, caddress, cfacility, pid
+    cid, cname, clogo, ccoperight, caddress, cfacility, cpicture, pid
   </sql>
   <select id="selectByExample" parameterType="com.woniuxy.domain.CinemaExample" resultMap="BaseResultMap">
     select
@@ -101,18 +103,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.woniuxy.domain.Cinema">
-    insert into cinema (cid, clogo, ccoperight, 
-      caddress, cfacility, pid
-      )
-    values (#{cid,jdbcType=INTEGER}, #{clogo,jdbcType=VARCHAR}, #{ccoperight,jdbcType=VARCHAR}, 
-      #{caddress,jdbcType=VARCHAR}, #{cfacility,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}
-      )
+    insert into cinema (cid, cname, clogo, 
+      ccoperight, caddress, cfacility, 
+      cpicture, pid)
+    values (#{cid,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, #{clogo,jdbcType=VARCHAR}, 
+      #{ccoperight,jdbcType=VARCHAR}, #{caddress,jdbcType=VARCHAR}, #{cfacility,jdbcType=VARCHAR}, 
+      #{cpicture,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.woniuxy.domain.Cinema">
     insert into cinema
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cid != null">
         cid,
+      </if>
+      <if test="cname != null">
+        cname,
       </if>
       <if test="clogo != null">
         clogo,
@@ -126,6 +131,9 @@
       <if test="cfacility != null">
         cfacility,
       </if>
+      <if test="cpicture != null">
+        cpicture,
+      </if>
       <if test="pid != null">
         pid,
       </if>
@@ -133,6 +141,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="cid != null">
         #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
       </if>
       <if test="clogo != null">
         #{clogo,jdbcType=VARCHAR},
@@ -145,6 +156,9 @@
       </if>
       <if test="cfacility != null">
         #{cfacility,jdbcType=VARCHAR},
+      </if>
+      <if test="cpicture != null">
+        #{cpicture,jdbcType=VARCHAR},
       </if>
       <if test="pid != null">
         #{pid,jdbcType=INTEGER},
@@ -163,6 +177,9 @@
       <if test="record.cid != null">
         cid = #{record.cid,jdbcType=INTEGER},
       </if>
+      <if test="record.cname != null">
+        cname = #{record.cname,jdbcType=VARCHAR},
+      </if>
       <if test="record.clogo != null">
         clogo = #{record.clogo,jdbcType=VARCHAR},
       </if>
@@ -175,6 +192,9 @@
       <if test="record.cfacility != null">
         cfacility = #{record.cfacility,jdbcType=VARCHAR},
       </if>
+      <if test="record.cpicture != null">
+        cpicture = #{record.cpicture,jdbcType=VARCHAR},
+      </if>
       <if test="record.pid != null">
         pid = #{record.pid,jdbcType=INTEGER},
       </if>
@@ -186,10 +206,12 @@
   <update id="updateByExample" parameterType="map">
     update cinema
     set cid = #{record.cid,jdbcType=INTEGER},
+      cname = #{record.cname,jdbcType=VARCHAR},
       clogo = #{record.clogo,jdbcType=VARCHAR},
       ccoperight = #{record.ccoperight,jdbcType=VARCHAR},
       caddress = #{record.caddress,jdbcType=VARCHAR},
       cfacility = #{record.cfacility,jdbcType=VARCHAR},
+      cpicture = #{record.cpicture,jdbcType=VARCHAR},
       pid = #{record.pid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -198,6 +220,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.woniuxy.domain.Cinema">
     update cinema
     <set>
+      <if test="cname != null">
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
       <if test="clogo != null">
         clogo = #{clogo,jdbcType=VARCHAR},
       </if>
@@ -210,6 +235,9 @@
       <if test="cfacility != null">
         cfacility = #{cfacility,jdbcType=VARCHAR},
       </if>
+      <if test="cpicture != null">
+        cpicture = #{cpicture,jdbcType=VARCHAR},
+      </if>
       <if test="pid != null">
         pid = #{pid,jdbcType=INTEGER},
       </if>
@@ -218,11 +246,46 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.woniuxy.domain.Cinema">
     update cinema
-    set clogo = #{clogo,jdbcType=VARCHAR},
+    set cname = #{cname,jdbcType=VARCHAR},
+      clogo = #{clogo,jdbcType=VARCHAR},
       ccoperight = #{ccoperight,jdbcType=VARCHAR},
       caddress = #{caddress,jdbcType=VARCHAR},
       cfacility = #{cfacility,jdbcType=VARCHAR},
+      cpicture = #{cpicture,jdbcType=VARCHAR},
       pid = #{pid,jdbcType=INTEGER}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
+  
+  
+  <select id="findByPage" parameterType="com.woniuxy.domain.Cinema" resultMap="BaseResultMap">
+  
+  select * from cinema
+  <trim prefix="where " suffixOverrides="and">
+  <if test="cname !=null">
+  	cname like concat("%",#{cname},"%") and
+  </if>
+  
+  <if test="cid !=null">
+  	cid=#{cid} and
+  </if>
+  </trim>
+  
+   limit #{startLine},#{row}
+  </select>
+  
+  <select id="getRow" parameterType="com.woniuxy.domain.Cinema" resultType="java.lang.Integer">
+  select count(*) from cinema
+  
+  <trim prefix="where " suffixOverrides="and">
+  <if test="cname !=null">
+  	cname like concat ("%",#{cname},"%") and
+  </if>
+  
+  <if test="cid !=null">
+  	cid=#{cid} and
+  </if>
+  </trim>
+  </select>
+  
+
 </mapper>

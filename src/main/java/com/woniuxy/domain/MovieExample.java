@@ -731,6 +731,216 @@ public class MovieExample {
             addCriterion("mprice not between", value1, value2, "mprice");
             return (Criteria) this;
         }
+
+        public Criteria andMnameIsNull() {
+            addCriterion("mname is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameIsNotNull() {
+            addCriterion("mname is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameEqualTo(String value) {
+            addCriterion("mname =", value, "mname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameNotEqualTo(String value) {
+            addCriterion("mname <>", value, "mname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameGreaterThan(String value) {
+            addCriterion("mname >", value, "mname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameGreaterThanOrEqualTo(String value) {
+            addCriterion("mname >=", value, "mname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameLessThan(String value) {
+            addCriterion("mname <", value, "mname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameLessThanOrEqualTo(String value) {
+            addCriterion("mname <=", value, "mname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameLike(String value) {
+            addCriterion("mname like", value, "mname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameNotLike(String value) {
+            addCriterion("mname not like", value, "mname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameIn(List<String> values) {
+            addCriterion("mname in", values, "mname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameNotIn(List<String> values) {
+            addCriterion("mname not in", values, "mname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameBetween(String value1, String value2) {
+            addCriterion("mname between", value1, value2, "mname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMnameNotBetween(String value1, String value2) {
+            addCriterion("mname not between", value1, value2, "mname");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverIsNull() {
+            addCriterion("mcover is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverIsNotNull() {
+            addCriterion("mcover is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverEqualTo(String value) {
+            addCriterion("mcover =", value, "mcover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverNotEqualTo(String value) {
+            addCriterion("mcover <>", value, "mcover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverGreaterThan(String value) {
+            addCriterion("mcover >", value, "mcover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverGreaterThanOrEqualTo(String value) {
+            addCriterion("mcover >=", value, "mcover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverLessThan(String value) {
+            addCriterion("mcover <", value, "mcover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverLessThanOrEqualTo(String value) {
+            addCriterion("mcover <=", value, "mcover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverLike(String value) {
+            addCriterion("mcover like", value, "mcover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverNotLike(String value) {
+            addCriterion("mcover not like", value, "mcover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverIn(List<String> values) {
+            addCriterion("mcover in", values, "mcover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverNotIn(List<String> values) {
+            addCriterion("mcover not in", values, "mcover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverBetween(String value1, String value2) {
+            addCriterion("mcover between", value1, value2, "mcover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMcoverNotBetween(String value1, String value2) {
+            addCriterion("mcover not between", value1, value2, "mcover");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeIsNull() {
+            addCriterion("mtype is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeIsNotNull() {
+            addCriterion("mtype is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeEqualTo(String value) {
+            addCriterion("mtype =", value, "mtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeNotEqualTo(String value) {
+            addCriterion("mtype <>", value, "mtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeGreaterThan(String value) {
+            addCriterion("mtype >", value, "mtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeGreaterThanOrEqualTo(String value) {
+            addCriterion("mtype >=", value, "mtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeLessThan(String value) {
+            addCriterion("mtype <", value, "mtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeLessThanOrEqualTo(String value) {
+            addCriterion("mtype <=", value, "mtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeLike(String value) {
+            addCriterion("mtype like", value, "mtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeNotLike(String value) {
+            addCriterion("mtype not like", value, "mtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeIn(List<String> values) {
+            addCriterion("mtype in", values, "mtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeNotIn(List<String> values) {
+            addCriterion("mtype not in", values, "mtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeBetween(String value1, String value2) {
+            addCriterion("mtype between", value1, value2, "mtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andMtypeNotBetween(String value1, String value2) {
+            addCriterion("mtype not between", value1, value2, "mtype");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

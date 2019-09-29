@@ -17,6 +17,5 @@ public class Seat implements Serializable{
 
     private String scolumn;
     
-
     
 }

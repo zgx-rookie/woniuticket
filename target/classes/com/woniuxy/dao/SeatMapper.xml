@@ -216,12 +216,12 @@
 	  
   <insert id="save" parameterType="com.woniuxy.domain.Seat">
 	insert into Seat(rid,sstate,srow,scolumn)
-	values( #{rid}, #{0}, #{srow}, #{scolumn})
+	values( #{rid}, #{sstate}, #{srow}, #{scolumn})
   </insert>
 
 
-	<select id="findByRid"  resultType="java.util.List">
-		select s.srow,s.scolumn from seat s where rid=#{rid}
+	<select id="findByRid" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
+		select * from seat  where rid=#{rid}
 	</select>
 	
 	

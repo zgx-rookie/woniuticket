@@ -11,6 +11,9 @@
     <result column="mprevue" jdbcType="VARCHAR" property="mprevue" />
     <result column="mposter" jdbcType="VARCHAR" property="mposter" />
     <result column="mprice" jdbcType="DOUBLE" property="mprice" />
+    <result column="mname" jdbcType="VARCHAR" property="mname" />
+    <result column="mcover" jdbcType="VARCHAR" property="mcover" />
+    <result column="mtype" jdbcType="VARCHAR" property="mtype" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,8 +74,77 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    movid, minfo, mrole, mdirector, mduration, mshowtime, mprevue, mposter, mprice
+    movid, minfo, mrole, mdirector, mduration, mshowtime, mprevue, mposter, mprice, mname, 
+    mcover, mtype
   </sql>
+  
+  
+  
+  
+    <select id="selectByLimitQuery" parameterType="com.woniuxy.domain.Page" resultMap="BaseResultMap" >
+		select
+		<include refid="Base_Column_List" />
+		from movie
+		<where>
+			<if test="name!=null">
+				and mname like concat('%',#{name},'%')
+			</if>
+			<if test="mtype!=null">
+				and mtype like concat('%',#{mtype},'%')
+			</if>
+		</where>
+			 limit #{startLine},#{size}
+	  </select>
+	  
+	  
+	  
+	  <select id="selectByType"  resultType="java.lang.String" >
+	    	 select distinct mtype from movie  
+	  </select>
+  
+  
+  	<select id="selectBySearchName" parameterType="java.lang.String" resultType="java.lang.Integer" >
+	    select count(*) from movie   
+	   <trim prefix="where " suffixOverrides="and">
+	   		<if test="name != null">
+				   mname like concat('%',#{name},'%') and 
+			</if>
+			<if test="mtype != null">
+				   mtype like concat('%',#{mtype},'%') and 
+			</if>
+	    </trim>
+	  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <select id="selectByExample" parameterType="com.woniuxy.domain.MovieExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -106,11 +178,13 @@
   <insert id="insert" parameterType="com.woniuxy.domain.Movie">
     insert into movie (movid, minfo, mrole, 
       mdirector, mduration, mshowtime, 
-      mprevue, mposter, mprice
+      mprevue, mposter, mprice, 
+      mname, mcover, mtype
       )
     values (#{movid,jdbcType=INTEGER}, #{minfo,jdbcType=VARCHAR}, #{mrole,jdbcType=VARCHAR}, 
       #{mdirector,jdbcType=VARCHAR}, #{mduration,jdbcType=VARCHAR}, #{mshowtime,jdbcType=DATE}, 
-      #{mprevue,jdbcType=VARCHAR}, #{mposter,jdbcType=VARCHAR}, #{mprice,jdbcType=DOUBLE}
+      #{mprevue,jdbcType=VARCHAR}, #{mposter,jdbcType=VARCHAR}, #{mprice,jdbcType=DOUBLE}, 
+      #{mname,jdbcType=VARCHAR}, #{mcover,jdbcType=VARCHAR}, #{mtype,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.woniuxy.domain.Movie">
@@ -143,6 +217,15 @@
       <if test="mprice != null">
         mprice,
       </if>
+      <if test="mname != null">
+        mname,
+      </if>
+      <if test="mcover != null">
+        mcover,
+      </if>
+      <if test="mtype != null">
+        mtype,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="movid != null">
@@ -171,6 +254,15 @@
       </if>
       <if test="mprice != null">
         #{mprice,jdbcType=DOUBLE},
+      </if>
+      <if test="mname != null">
+        #{mname,jdbcType=VARCHAR},
+      </if>
+      <if test="mcover != null">
+        #{mcover,jdbcType=VARCHAR},
+      </if>
+      <if test="mtype != null">
+        #{mtype,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -210,6 +302,15 @@
       <if test="record.mprice != null">
         mprice = #{record.mprice,jdbcType=DOUBLE},
       </if>
+      <if test="record.mname != null">
+        mname = #{record.mname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcover != null">
+        mcover = #{record.mcover,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mtype != null">
+        mtype = #{record.mtype,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -225,7 +326,10 @@
       mshowtime = #{record.mshowtime,jdbcType=DATE},
       mprevue = #{record.mprevue,jdbcType=VARCHAR},
       mposter = #{record.mposter,jdbcType=VARCHAR},
-      mprice = #{record.mprice,jdbcType=DOUBLE}
+      mprice = #{record.mprice,jdbcType=DOUBLE},
+      mname = #{record.mname,jdbcType=VARCHAR},
+      mcover = #{record.mcover,jdbcType=VARCHAR},
+      mtype = #{record.mtype,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -257,6 +361,15 @@
       <if test="mprice != null">
         mprice = #{mprice,jdbcType=DOUBLE},
       </if>
+      <if test="mname != null">
+        mname = #{mname,jdbcType=VARCHAR},
+      </if>
+      <if test="mcover != null">
+        mcover = #{mcover,jdbcType=VARCHAR},
+      </if>
+      <if test="mtype != null">
+        mtype = #{mtype,jdbcType=VARCHAR},
+      </if>
     </set>
     where movid = #{movid,jdbcType=INTEGER}
   </update>
@@ -269,7 +382,10 @@
       mshowtime = #{mshowtime,jdbcType=DATE},
       mprevue = #{mprevue,jdbcType=VARCHAR},
       mposter = #{mposter,jdbcType=VARCHAR},
-      mprice = #{mprice,jdbcType=DOUBLE}
+      mprice = #{mprice,jdbcType=DOUBLE},
+      mname = #{mname,jdbcType=VARCHAR},
+      mcover = #{mcover,jdbcType=VARCHAR},
+      mtype = #{mtype,jdbcType=VARCHAR}
     where movid = #{movid,jdbcType=INTEGER}
   </update>
 </mapper>

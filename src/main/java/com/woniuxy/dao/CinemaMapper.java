@@ -6,6 +6,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CinemaMapper {
+
+	
+	List<Cinema> findByPage(Cinema cinema);
+	Integer getRow(Cinema cinema);
+	
+
     long countByExample(CinemaExample example);
 
     int deleteByExample(CinemaExample example);

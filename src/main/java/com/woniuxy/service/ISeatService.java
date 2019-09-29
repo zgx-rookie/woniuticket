@@ -10,11 +10,10 @@ public interface ISeatService {
 	 void save(Seat seat);
 	 void delete(Integer sid);
 	 void find(Integer sid);
-	 Seat findByRid(Integer rid);
 	 void update(Seat seat);
 	void delByRid(Integer rid);
 	
 	List<Map> select(Integer rid);
 	 
-
+	List<Seat> findSeats(Integer rid);
 }

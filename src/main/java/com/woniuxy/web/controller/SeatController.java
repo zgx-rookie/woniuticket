@@ -1,5 +1,6 @@
 package com.woniuxy.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,42 +29,94 @@ public class SeatController {
 	@PostMapping
 	@ResponseBody
 	public void save(@RequestBody Map map) {
-		System.out.println("rid:" + map.get("rid"));
+		System.out.println("====================");
+		
+		System.out.println(map);
+		
+		service.delByRid((Integer)map.get("rid"));
+		
+//		service.delByRid((Integer)map.get("rid"));
+		System.out.println(map.get("rid"));
 		List<Map> list = (List<Map>) map.get("xb");
 		for (Map map2 : list) {
 			Seat seat = new Seat();
 			seat.setSrow(map2.get("srow")+"");
 			seat.setScolumn(map2.get("scolumn")+"");
-			seat.setSstate(map.get("rid"));
+			seat.setSstate(map.get("sstate"));
 			seat.setRid(map.get("rid"));
 			System.out.println(seat);
 			service.save(seat);
 		}
 	}
 	
+	
 		@DeleteMapping
 		@ResponseBody
 		public void delByRid(Integer rid) {
 			service.delByRid(rid);
-		}
-		
+	}
 	
+	/*
+	 * @GetMapping
+	 * 
+	 * @ResponseBody public String findSeats(Integer rid) {
+	 * System.out.println("@@@@@@@@@@@@@@@@@@@@@"); System.out.println(rid);
+	 * 
+	 * List<Seat> seats = service.findSeats(rid);
+	 * 
+	 * System.out.println("controller++++++++++++++++++++++++++++++++++"+seats);
+	 * 
+	 * System.out.println(seats.size());
+	 * 
+	 * 
+	 * if(seats.size()!=0) {
+	 * 
+	 * StringBuilder oldJson = new StringBuilder();
+	 * 
+	 * oldJson.append("["); for (Seat seat : seats) {
+	 * oldJson.append("{\"index\":["+seat.getSrow()+","+seat.getScolumn()+"]},");
+	 * 
+	 * }
+	 * 
+	 * StringBuilder newJson = new StringBuilder( oldJson.substring(0,
+	 * oldJson.length()-1));
+	 * 
+	 * newJson.append("]"); System.out.println(newJson);
+	 * 
+	 * return newJson.toString(); }else { return "[]"; }
+	 * 
+	 * }
+	 */
 		
 		
-	
-			
 		@GetMapping
-		@ResponseBody
-		public Seat findByRid(Integer rid) {
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaa");
-			System.out.println(service.findByRid(rid));
-			return null;
+		@ResponseBody   
+		public String findSeats(Integer rid) {
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@" + rid);
+			List<Seat> seats = service.findSeats(rid);
+			
+			System.out.println("controller++++++++++++++++++++++++++++++++++");
+			System.out.println(seats);
+			for (Seat seat : seats) {
+				System.out.println(seat);
+			}
+			StringBuilder oldJson = new StringBuilder();
+			oldJson.append("[");
+			for (Seat seat : seats) {
+				oldJson.append("{\"index\":["+seat.getSrow()+","+seat.getScolumn()+"]},");
+			}
+			
+			StringBuilder newJson = new StringBuilder( oldJson.substring(0, oldJson.length()-1));
+			
+			newJson.append("]");
+			System.out.println(newJson);
+			
+			return newJson.toString();
 			
 		}
-			
-			
+		 
 		
-		
+			
 	@PutMapping
 	@ResponseBody
 	

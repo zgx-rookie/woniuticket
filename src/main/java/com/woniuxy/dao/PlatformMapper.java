@@ -6,6 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface PlatformMapper {
+
+	
+	List<Platform> findAll();
+	
+
     long countByExample(PlatformExample example);
 
     int deleteByExample(PlatformExample example);

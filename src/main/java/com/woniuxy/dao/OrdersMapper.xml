@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.woniuxy.dao.OrdersMapper">
+
+
   <resultMap id="BaseResultMap" type="com.woniuxy.domain.Orders">
     <id column="oid" jdbcType="INTEGER" property="oid" />
     <result column="movid" jdbcType="INTEGER" property="movid" />
@@ -225,4 +227,62 @@
       ostate = #{ostate,jdbcType=VARCHAR}
     where oid = #{oid,jdbcType=INTEGER}
   </update>
+   <resultMap id="ordersMap" type="com.woniuxy.domain.Orders" autoMapping="true">
+    <id column="oid" jdbcType="INTEGER" property="oid" />
+    <result column="minfo" jdbcType="VARCHAR" property="minfo" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="opaytime" jdbcType="DATE" property="opaytime" />
+    <result column="opaymoney" jdbcType="DOUBLE" property="opaymoney" />
+     <result column="ostate" jdbcType="VARCHAR" property="ostate" /> 
+  </resultMap>
+  <select id="findBySize" resultMap="BaseResultMap" parameterType="com.woniuxy.domain.Orders">
+   select orders.oid,orders.opaymoney,orders.opaytime,orders.ostate,
+	movie.minfo,
+	user.username
+	from 
+	(orders left join movie on orders.movid = movie.movid)
+	left join user on orders.uid = user.uid limit #{startLine},#{size}
+</select>
+<select id="findCount" resultType="int">
+select count(oid) from orders 
+</select>
+
+<select id="findByForm" resultMap="BaseResultMap" parameterType="com.woniuxy.domain.Orders">
+select user.username,
+	user.uphone,
+	movie.minfo,
+	movie.mprice,
+	orders.opaymoney,
+	orders.opaytime
+	from
+	(orders left join movie on orders.movid = movie.movid)
+	left join user on orders.uid=user.uid where orders.oid=#{oid}
+
+</select>
+<!-- 查最近30天买过票的电影名以及购票次数 -->
+<select id="findByDays" resultMap="aa">
+select *from  (select movie.minfo as a,count(movie.movid)as b
+	from
+	orders left join movie on orders.movid=movie.movid 
+	where DATE_SUB(CURDATE(), INTERVAL 30 DAY) <![CDATA[ <= ]]>  orders.opaytime
+	group by movie.minfo limit 0,5)t1
+left join 
+(select count(movie.movid) as c ,movie.minfo  d
+	from
+	orders left join movie on orders.movid=movie.movid  
+	where DATE_SUB(CURDATE(), INTERVAL 1 day)<![CDATA[ <= ]]>  orders.opaytime
+	group by movie.minfo limit 0,5)t2
+on t2.d=t1.a
+
+
+</select>
+<resultMap type="com.woniuxy.domain.DaysResult" id="aa">
+<result column="b" property="movieCountDays"/>
+<result column="a" property="minfo"/>
+<result column="c" property="movieCount" />
+<result column="d" property="minfo2" />
+</resultMap>
+
+
+
 </mapper>

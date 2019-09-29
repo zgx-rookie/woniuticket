@@ -2,7 +2,9 @@ package com.woniuxy.domain;
 
 import lombok.Data;
 
-@Data
+
+@Data 
+
 public class Administrator {
     private Integer adid;
 

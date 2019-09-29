@@ -6,6 +6,12 @@
     <result column="pname" jdbcType="VARCHAR" property="pname" />
     <result column="ppassword" jdbcType="VARCHAR" property="ppassword" />
   </resultMap>
+
+  <select id="findAll" resultMap="BaseResultMap">
+  	select * from platform
+  </select>
+  
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

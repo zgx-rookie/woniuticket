@@ -1,5 +1,6 @@
 package com.woniuxy.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -49,19 +50,26 @@ public class SeatServiceImpl implements ISeatService {
 	}
 
 	@Override
-	public Seat findByRid(Integer rid) {
+	public List<Map> select(Integer rid) {
 		// TODO Auto-generated method stub
-		return mapper.findByRid(rid);
+		return null;
 	}
 
 	@Override
-	public List<Map> select(Integer rid) {
-		// TODO Auto-generated method stub
-		return mapper.findByRid1(rid);
+	public List<Seat> findSeats(Integer rid) {
+		System.out.println("1111111111111111111111111");
+		List<Seat> list=mapper.findByRid(rid);
+		for (Seat seat : list) {
+//			System.out.println(seat);
+		}
+		System.out.println(list);
+		return list;
 	}
+
 	
 	
 	
+
 
 
 }
