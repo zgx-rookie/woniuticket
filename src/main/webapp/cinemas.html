@@ -504,6 +504,14 @@
 			picture:"",
 			num:[]
 		},
+		created(){
+			axios.defaults.withCredentials=true;
+			axios.get("http://localhost/userss/isLogin").then(function(data){
+				if(data.data.status==500){
+					window.location.href="/login.html";
+				}
+			})
+		},
 		mounted(){
 			this.find(this.p,this.cname);
 		},

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div id="app">
+	<form >
+		用户名:<input name="username" v-model="username"><br>
+		密码:<input name="password" v-model="password"><br>
+		<button type="button" @click="register"> 注册</button>
+	</form>
+	</div>
+</body>
+
+<script type="text/javascript">
+	var vue=new Vue({
+		el:"#app",
+		data:{
+			username:"",
+			password:""
+		},
+		methods:{
+			register(){
+				var self=this;
+				var params=$("form:eq(0)").serialize();
+				axios.post("http://localhost/userss",params).then(function(data){
+					
+					if(data.data.status == 200) {
+						self.username = self.password = '';
+						alert("注册成功");
+						window.location.href="/login.html";
+						
+					} else if(data.data.status == 500) {
+						alert(data.data.message)
+					} 
+				})
+			}
+		}
+		
+		
+	})
+	
+
+</script>
+</html>

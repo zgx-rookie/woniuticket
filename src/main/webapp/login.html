@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div id="app">
+	<form>
+	用户名:<input name="username" v-model="username"><br>
+	密码:<input name="password" v-model="password"><br>
+	<button type="button" @click="log()">登录</button>
+	<button type="button" @click="reg()">注册</button>
+	</form>
+	</div>
+</body>
+<script type="text/javascript">
+	var vue=new Vue({
+		el:"#app",
+		data:{
+			username:"",
+			password:""
+		},
+		methods:{
+			log(){
+				axios.defaults.withCredentials=true;
+				var formData=new FormData();
+				var params=$("form:eq(0)").serialize();
+				axios.post("http://localhost/userss/login",params).then(function(data){
+					if(data.data.status == 200) {
+							window.location.href="/cinemas.html";
+						} else if(data.data.status == 500) {
+							alert(data.data.message);
+						}
+				})
+			},
+			reg(){
+				window.location.href="/register.html";
+			}
+		}
+	})
+
+</script>
+</html>
