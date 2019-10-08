@@ -2,6 +2,8 @@ package com.woniuxy.dao;
 
 import com.woniuxy.domain.Movie;
 import com.woniuxy.domain.MovieExample;
+import com.woniuxy.domain.Page;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,14 @@ public interface MovieMapper {
     int updateByPrimaryKeySelective(Movie record);
 
     int updateByPrimaryKey(Movie record);
+    
+    
+    List<Movie> selectByLimitQuery(Page<Movie> page);
+    
+    int selectBySearchName(String name,String mtype);
+    
+    List<String> selectByType();
+    
+    
+    
 }

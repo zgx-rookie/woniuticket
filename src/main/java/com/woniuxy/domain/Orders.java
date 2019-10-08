@@ -19,11 +19,5 @@ public class Orders {
 
     private String ostate;
 
-    private String minfo;
-    private String username;
-    
-    private String uphone;
-    
-    private Double mprice;
-    
+   
 }

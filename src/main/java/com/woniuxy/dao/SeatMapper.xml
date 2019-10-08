@@ -87,7 +87,7 @@
     select 
     <include refid="Base_Column_List" />
     from seat
-    where sid = #{sid,jdbcType=INTEGER}
+    where rid = #{rid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from seat
@@ -208,4 +208,22 @@
       scolumn = #{scolumn,jdbcType=VARCHAR}
     where sid = #{sid,jdbcType=INTEGER}
   </update>
+  
+  <delete id="delByRid"  parameterType="java.lang.Integer">
+  	delete from seat where rid=#{rid}
+  </delete>
+	
+	  
+  <insert id="save" parameterType="com.woniuxy.domain.Seat">
+	insert into Seat(rid,sstate,srow,scolumn)
+	values( #{rid}, #{sstate}, #{srow}, #{scolumn})
+  </insert>
+
+
+	<select id="findByRid" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
+		select * from seat  where rid=#{rid}
+	</select>
+	
+	
+	
 </mapper>

@@ -1,7 +1,6 @@
 package com.woniuxy.config;
 
 import javax.sql.DataSource;
-
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.jdbc.JdbcRealm;
@@ -10,7 +9,7 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
- 
+
 import com.alibaba.druid.pool.DruidDataSource;
 
 @Configuration
@@ -18,68 +17,50 @@ public class ShiroConfig {
 	
 	@Bean
 	public DataSource ds() {
-		DruidDataSource ds = new DruidDataSource();
+		DruidDataSource ds=new DruidDataSource();
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
 		ds.setUrl("jdbc:mysql:///woniuticket");
 		ds.setUsername("root");
 		ds.setPassword("java");
-		return ds;	
+		return  ds;
+		
 	}
-	
+
+	@Bean
 	public HashedCredentialsMatcher hcm() {
-		HashedCredentialsMatcher hcm = new HashedCredentialsMatcher();
-		hcm.setHashAlgorithmName("MD5");
+		HashedCredentialsMatcher hcm =new HashedCredentialsMatcher();
+		hcm.setHashAlgorithmName("md5");
 		hcm.setHashIterations(1024);
 		return hcm;
 	}
 	
 	
 	@Bean
-	public JdbcRealm jdbcRealm() {
-		JdbcRealm realm = new JdbcRealm();
+	public JdbcRealm jdbcReallm() {
+		JdbcRealm realm =new JdbcRealm();
 		realm.setDataSource(ds());
-		
-		// 认证
-		realm.setAuthenticationQuery("SELECT password,password_salt FROM users WHERE username=?");
-		// 根据用户名查询角色
-		realm.setUserRolesQuery("SELECT rname FROM users_roles ur INNER JOIN users u ON ur.`uid` = u.`uid` INNER JOIN roles r ON ur.rid = r.rid AND username = ?");
-		// 根据角色名查询权限
-		realm.setPermissionsQuery("SELECT pname FROM roles_permissions rp INNER JOIN roles r ON rp.`rid` = r.`rid` INNER JOIN permissions p ON rp.`pid` = p.`pid` AND rname = ?");
-		
-		// 必须加这个配置，否则对客户端传来的明文密码不进行解密
+		realm.setAuthenticationQuery("select password,usalt from user where username=?");
+		realm.setUserRolesQuery("select rname from user_role...");
+		realm.setPermissionsQuery("select pname from role_permission...");
 		realm.setSaltStyle(SaltStyle.COLUMN);
-		
 		realm.setCredentialsMatcher(hcm());
-		
-		
-		// 支持权限查询(必须配置该项，否则无法判断用户拥有的角色是否拥有某个权限)
-		// 这样才能，根据用户去查询用户的权限。
 		realm.setPermissionsLookupEnabled(true);
-
-		
 		
 		return realm;
 	}
-	
+
 	@Bean
 	public SecurityManager securityManager() {
-		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-		securityManager.setRealm(jdbcRealm());
+		DefaultWebSecurityManager securityManager=new DefaultWebSecurityManager();
+		securityManager.setRealm(jdbcReallm());
 		return securityManager;
 	}
 	
-	/*
-		以下的过滤器会自动，执行改行代码： 
-			SecurityUtils.setSecurityManager(securityManager)
-		该代码就是把securityManager设置为全局的！ 这样，我们就可以在项目的任何一个地方
-		通过SecurityUtils.getSubject来获取登录当前应用的主体了，
-	*/ 
 	@Bean
 	public ShiroFilterFactoryBean sf() {
-		ShiroFilterFactoryBean sf = new ShiroFilterFactoryBean();
+		ShiroFilterFactoryBean sf=new ShiroFilterFactoryBean();
 		sf.setSecurityManager(securityManager());
 		return sf;
 	}
-	
 	
 }

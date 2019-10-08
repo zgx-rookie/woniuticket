@@ -25,5 +25,5 @@ public class User {
 
     private Double ubalance;
 
-    private Integer startLine;
+    
 }

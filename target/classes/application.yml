@@ -1,8 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.7.95:3306/woniuticket?characterEncoding=utf8
-    
+    url: jdbc:mysql://192.168.7.95:3306/woniuticket?allowMultiQueries=true
     username: root
     password: java
   mvc:
