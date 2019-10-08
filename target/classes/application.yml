@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.7.120:3306/woniuticket?allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/woniuticket?allowMultiQueries=true
     username: root
-    password: java
+    password: root
   mvc:
     view:
       prefix: /

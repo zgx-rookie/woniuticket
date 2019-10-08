@@ -10,6 +10,7 @@
     <result column="cfacility" jdbcType="VARCHAR" property="cfacility" />
     <result column="cpicture" jdbcType="VARCHAR" property="cpicture" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
+   
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -287,5 +288,25 @@
   </trim>
   </select>
   
+  <select id="findByMovid" parameterType="com.woniuxy.domain.Cinema" resultMap="aa">
+    select cinema.clogo as a,cinema.caddress as b,movie.mprice as c
+	from
+	(cinema left join room on cinema.cid=room.cid)
+	left join
+	paipian on paipian.rid=room.rid 
+	left join
+	movie on paipian.movid=movie.movid
+	where paipian.movid=#{movid}
+  
+  </select>
+<resultMap type="com.woniuxy.domain.Cinema" id="aa">
+<result column="a" property="clogo" />
+<result column="b" property="caddress" />
+<result column="c" property="mprice"/>
+</resultMap>
+<select id="findMovieInfo" parameterType="com.woniuxy.domain.Movie" resultType="com.woniuxy.domain.Movie">
+select *from movie where movid=#{movid}
+
+</select>
 
 </mapper>

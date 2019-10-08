@@ -2,6 +2,8 @@ package com.woniuxy.dao;
 
 import com.woniuxy.domain.Cinema;
 import com.woniuxy.domain.CinemaExample;
+import com.woniuxy.domain.Movie;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,7 +12,7 @@ public interface CinemaMapper {
 	
 	List<Cinema> findByPage(Cinema cinema);
 	Integer getRow(Cinema cinema);
-	
+	List<Cinema> findByMovid(@Param("movid") Integer movid);
 
     long countByExample(CinemaExample example);
 
@@ -33,4 +35,6 @@ public interface CinemaMapper {
     int updateByPrimaryKeySelective(Cinema record);
 
     int updateByPrimaryKey(Cinema record);
+    
+    Movie findMovieInfo(@Param("movid") Integer movid);
 }

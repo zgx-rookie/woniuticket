@@ -26,5 +26,6 @@ public class Cinema {
     
     private Integer row;
 
-   
+   private Integer movid;
+   private Double mprice;
 }

@@ -25,7 +25,7 @@ public class SocketContorller {
 			WebSocketServer.sendInfo(message);
 		} catch (IOException e) {
 			e.printStackTrace();
-			
+				
 		}  
 		
 	} 

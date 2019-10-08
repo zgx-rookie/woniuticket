@@ -46,5 +46,6 @@ public interface OrdersMapper {
     
     List<Orders> findByForm(@Param("oid") Integer oid);
     
+    
     List<DaysResult> findByDays();
 }
