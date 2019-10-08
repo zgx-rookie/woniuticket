@@ -13,6 +13,7 @@ module.exports={
 			new webpack.ProvidePlugin({
 				$:"jquery",
 				jQuery:"jquery",
+				jquery:"jquery",
 				"window.jQuery":"jquery"
 			})
 		],
@@ -30,6 +31,7 @@ module.exports={
 				{test:/\.(tof|eot|ttf|woff|woff2|svg|)$/,use:'url-loader'}
 			]
 		}
+		
 	
 		
 }

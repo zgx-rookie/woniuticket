@@ -1,12 +1,12 @@
 import Vue from 'vue';
-import login from './login.vue';
+import homePage from './homePage.vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 
 var router =new VueRouter({
 	routes:[
-		{path:'/login',component:login}
+		{path:'/',component:homePage}
 	]
 });
 
