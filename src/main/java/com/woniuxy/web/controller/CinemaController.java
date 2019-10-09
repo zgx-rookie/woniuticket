@@ -35,7 +35,7 @@ public class CinemaController {
 	@PostMapping  
 	@ResponseBody
 	public void save(@RequestBody MultipartFile logo,MultipartFile pinfo,Cinema cinema,HttpServletRequest req) throws IOException, InterruptedException {
-		
+		System.out.println("++++++++++++++++++++++");
 		String realPath=req.getServletContext().getRealPath("/"); 
 		
 		UUID uuid = UUID.randomUUID();
@@ -56,6 +56,8 @@ public class CinemaController {
 		//如果没有dir路径就创建
 		File dir=new File(realPath+"logo");
 		if(!dir.exists())dir.mkdirs();
+		File dir2=new File(realPath+"picture");
+		if(!dir2.exists())dir2.mkdirs();
 		
 		logo.transferTo(new File(logoStr));
 		pinfo.transferTo(new File(pinfoStr));
@@ -141,30 +143,38 @@ public class CinemaController {
 	@PutMapping
 	@ResponseBody
 	public void updata(@RequestBody MultipartFile logo,MultipartFile picture,Cinema cinema,HttpServletRequest req) throws IllegalStateException, IOException {
+		System.out.println(logo);
+		System.out.println(cinema);
 		String realPath=req.getServletContext().getRealPath("/");
+
+		//如果没有dir路径就创建
+		File dir=new File(realPath+"logo");
+		if(!dir.exists())dir.mkdirs();
+		File dir2=new File(realPath+"picture");
+		if(!dir2.exists())dir2.mkdirs();
+		
+		
 		Cinema findOne = service.findOne(cinema.getCid());
 		String clogo = findOne.getClogo();
 		String cpicture = findOne.getCpicture();
 		File logoFile=new File(realPath+clogo);
 		File pictureFile=new File(realPath+cpicture);
-		logoFile.delete();
-		pictureFile.delete();
-		System.out.println(clogo+"        "+cpicture);
-		UUID logoUUId=UUID.randomUUID();
-		UUID pictureUUId=UUID.randomUUID();
-		
-		String logoTemp=logo.getOriginalFilename();
-		String picTemp=picture.getOriginalFilename();
-		String logoStr="logo/"+logoUUId+logoTemp.substring( logoTemp.lastIndexOf("."));
-		String picStr="logo/"+pictureUUId+picTemp.substring( picTemp.lastIndexOf("."));
-		
-		//如果没有dir路径就创建
-		File dir=new File(realPath+"logo");
-		if(!dir.exists())dir.mkdirs();
-		System.out.println(realPath);
-		
-		logo.transferTo(new File(realPath+logoStr));
-		picture.transferTo(new File(realPath+picStr));
+		String logoStr=clogo;
+		String picStr=cpicture;
+		if(logo!=null) {
+			logoFile.delete();
+			UUID logoUUId=UUID.randomUUID();
+			String logoTemp=logo.getOriginalFilename();
+			logoStr="logo/"+logoUUId+logoTemp.substring( logoTemp.lastIndexOf("."));
+			logo.transferTo(new File(realPath+logoStr));
+		}
+		if(picture!=null) {
+			pictureFile.delete();
+			UUID pictureUUId=UUID.randomUUID();
+			String picTemp=picture.getOriginalFilename();
+			picStr="logo/"+pictureUUId+picTemp.substring( picTemp.lastIndexOf("."));
+			picture.transferTo(new File(realPath+picStr));
+		}
 		
 		cinema.setClogo(logoStr);
 		cinema.setCpicture(picStr);

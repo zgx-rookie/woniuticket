@@ -1,9 +1,11 @@
 package com.woniuxy.web.controller;
 
+import java.util.HashMap;
 /**
  * 田普旭123
  */
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.woniuxy.domain.Page;
 import com.woniuxy.domain.User;
 import com.woniuxy.service.IUserService;
+import com.woniuxy.util.AppUtils;
 
 @Controller
 @RequestMapping("/users")
@@ -47,7 +50,6 @@ public Page<User> find(Integer p) {
 public void update(User user) {
 	System.out.println(user);
 	service.update(user);
-	
 }
 
 @PostMapping

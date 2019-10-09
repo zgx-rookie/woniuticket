@@ -13,7 +13,7 @@ public class GeneratorSqlmap {
 		List<String> warnings = new ArrayList<String>();
 		boolean overwrite = true;
 		
-		File configFile = new File("src/test/resources/generatorConfig.xml");
+		File configFile = new File("src/test/java/com/woniuxy/mybatis/generatorConfig.xml");
 		ConfigurationParser cp = new ConfigurationParser(warnings);
 		Configuration config = cp.parseConfiguration(configFile);
 		DefaultShellCallback callback = new DefaultShellCallback(overwrite);

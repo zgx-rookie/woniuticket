@@ -26,6 +26,8 @@ import com.woniuxy.domain.Movie;
 import com.woniuxy.domain.Page;
 import com.woniuxy.service.IMovieService;
 
+
+
 @Controller
 @RequestMapping("movies")
 public class MovieController {
@@ -101,6 +103,25 @@ public class MovieController {
 		}
 		return newPage;
 	}
+	
+	@GetMapping("mtype")
+	@ResponseBody
+	public Page<Movie> findtype(String mtype){
+		String name =null;
+		if(mtype=="") {
+			mtype=null;
+		}
+		Page<Movie> newPage=new Page<Movie>(1,getRowCount(name,mtype),5);
+		newPage.setName(name);
+		newPage.setMtype(mtype);
+		List<Movie> list = service.findlimit(newPage);
+		if(list.size()!=0) {
+			newPage.setList(list);
+		}
+		return newPage;
+	}
+	
+	
 	
 	//获取搜索到的行数
 	private Integer getRowCount(String name,String mtype) {
