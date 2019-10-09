@@ -1,30 +1,32 @@
 <template>
 	<div >
-	
-		<div class="Latest-tv-series">
-		<h4 class="latest-text w3_latest_text w3_home_popular">精彩预告</h4>
+		
+		
+	<div class="Latest-tv-series">
+		<h4 class="latest-text w3_latest_text w3_home_popular">推荐佳片</h4>
 		<div class="container">
 			<section class="slider">
 				<div class="flexslider">
 					<ul class="slides">
-						<li  v-for="movie in movieList">
-							<div class="agile_tv_series_grid" >
+						<li >
+							
+							<div class="agile_tv_series_grid">
 								<div class="col-md-6 agile_tv_series_grid_left">
 									<div class="w3ls_market_video_grid1">
-										<img :src=movie.mcover alt=" " class="img-responsive" />
+										<img :src=top1.mcover alt=" " class="img-responsive" />
 										<a class="w3_play_icon" href="#small-dialog">
 											<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
 										</a>
 									</div>
 								</div>
 								<div class="col-md-6 agile_tv_series_grid_right">
-									<p class="fexi_header">电影名</p>
-									<p class="fexi_header_para"><span class="conjuring_w3">电影简介<label>:</label></span>{{movie.minfo}}</p>
-									<p class="fexi_header_para"><span>上映时间<label>:</label></span>{{movie.mshowtime}}</p>
+									<p class="fexi_header">{{top1.mname}}</p>
+									<p class="fexi_header_para"><span class="conjuring_w3">电影简介<label>:</label></span>{{top1.minfo}}</p>
+									<p class="fexi_header_para"><span>上映时间<label>:</label></span>{{top1.mshowtime}}</p>
 									<p class="fexi_header_para">
 										<span>类型<label>:</label> </span>
-										<a href="genres.html">{{movie.mtype}}</a>
-															
+										<a href="genres.html">{{top1.mtype}}</a> 
+																	
 									</p>
 									<p class="fexi_header_para fexi_header_para1"><span>Star Rating<label>:</label></span>
 										<a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
@@ -35,8 +37,76 @@
 									</p>
 								</div>
 								<div class="clearfix"> </div>
+								
 							</div>
 						</li>
+						
+						<li >
+							
+							<div class="agile_tv_series_grid">
+								<div class="col-md-6 agile_tv_series_grid_left">
+									<div class="w3ls_market_video_grid1">
+										<img :src=top2.mcover alt=" " class="img-responsive" />
+										<a class="w3_play_icon" href="#small-dialog">
+											<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+										</a>
+									</div>
+								</div>
+								<div class="col-md-6 agile_tv_series_grid_right">
+									<p class="fexi_header">{{top2.mname}}</p>
+									<p class="fexi_header_para"><span class="conjuring_w3">电影简介<label>:</label></span>{{top2.minfo}}</p>
+									<p class="fexi_header_para"><span>上映时间<label>:</label></span>{{top2.mshowtime}}</p>
+									<p class="fexi_header_para">
+										<span>类型<label>:</label> </span>
+										<a href="genres.html">{{top2.mtype}}</a> 
+																	
+									</p>
+									<p class="fexi_header_para fexi_header_para1"><span>Star Rating<label>:</label></span>
+										<a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+										<a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+										<a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+										<a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+										<a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+									</p>
+								</div>
+								<div class="clearfix"> </div>
+								
+							</div>
+						</li>
+						<li >
+							
+							<div class="agile_tv_series_grid">
+								<div class="col-md-6 agile_tv_series_grid_left">
+									<div class="w3ls_market_video_grid1">
+										<img :src=top3.mcover alt=" " class="img-responsive" />
+										<a class="w3_play_icon" href="#small-dialog">
+											<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+										</a>
+									</div>
+								</div>
+								<div class="col-md-6 agile_tv_series_grid_right">
+									<p class="fexi_header">{{top3.mname}}</p>
+									<p class="fexi_header_para"><span class="conjuring_w3">电影简介<label>:</label></span>{{top3.minfo}}</p>
+									<p class="fexi_header_para"><span>上映时间<label>:</label></span>{{top1.mshowtime}}</p>
+									<p class="fexi_header_para">
+										<span>类型<label>:</label> </span>
+										<a href="genres.html">{{top3.mtype}}</a> 
+																	
+									</p>
+									<p class="fexi_header_para fexi_header_para1"><span>Star Rating<label>:</label></span>
+										<a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+										<a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+										<a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+										<a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+										<a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+									</p>
+								</div>
+								<div class="clearfix"> </div>
+								
+							</div>
+						</li>
+						
+						
 					</ul>
 				</div>
 			</section>
@@ -48,7 +118,7 @@
 		
     	
 		<div class="general">
-		<h4 class="latest-text w3_latest_text">正在热映</h4>
+		<h4 class="latest-text w3_latest_text">各类热点</h4>
 		<div class="container">
 			<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 				<ul id="myTab" class="nav nav-tabs" role="tablist">
@@ -93,7 +163,7 @@
 	
 	
 		<div class="general">
-		<h4 class="latest-text w3_latest_text">即将上映</h4>
+		<h4 class="latest-text w3_latest_text">火热上映</h4>
 		<div class="container">
 			<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 				<div id="myTabContent" class="tab-content">
@@ -163,9 +233,10 @@
 			return {
 				movieList:[],
 				type:[],
-				typeList:[]
-				
-				
+				typeList:[],
+				top1:'',
+				top2:'',
+				top3:''
 			}
 		},
 		created(){
@@ -178,6 +249,9 @@
 			findAll(){
 				this.$http.get("http://localhost/movies").then(function(data){
 					this.movieList=(data.body);
+					this.top1=this.movieList[0];
+					this.top2=this.movieList[1];
+					this.top3=this.movieList[2];
 				});
 			},
 			getType(){
@@ -191,6 +265,7 @@
 					
 				});
 			}
+			
 		}
 		
 	}
