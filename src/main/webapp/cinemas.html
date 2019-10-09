@@ -3,7 +3,7 @@
 <head>
 <title>影院管理</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="keywords" content="" />
 <script type="application/x-javascript">
 	
@@ -59,7 +59,11 @@
 	.state2{
 		color:blue;
 	}
-
+	
+	#cinema img{
+		width:60px; 
+	}
+	
 </style>
 
 </head>
@@ -91,17 +95,14 @@
 									<span>影院管理</span> <i class="fa fa-angle-left pull-right"></i>
 							</a>
 								<ul class="treeview-menu">
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>查看影院信息</a></li>
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>查看影票信息</a></li>
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>查看用户信息</a></li>
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>查看订单信息</a></li>
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>查看影院信息</a></li>
+									<li><a href="cinemas.html"><i class="fa fa-angle-right"></i>查看影院信息</a></li>
+									<li><a href="usertables.html"><i class="fa fa-angle-right"></i>查看用户信息</a></li>
+									<li><a href="ordertables.html"><i class="fa fa-angle-right"></i>查看订单信息</a></li>
 								</ul></li>
 							<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
 									<span>放映点管理</span> <i class="fa fa-angle-left pull-right"></i>
 							</a>
 								<ul class="treeview-menu">
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>放映点管理</a></li>
 									<li><a href="roomseatTable.html"><i class="fa fa-angle-right"></i>展厅管理</a></li>
 								</ul></li>
 
@@ -109,8 +110,7 @@
 									<span>影片管理</span> <i class="fa fa-angle-left pull-right"></i>
 							</a>
 								<ul class="treeview-menu">
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>影片列表</a></li>
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>排片信息</a></li>
+									<li><a href="movieTable.html"><i class="fa fa-angle-right"></i>影片列表</a></li>
 								</ul></li>
 							<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
 									<span>日志系统</span> <i class="fa fa-angle-left pull-right"></i>
@@ -365,12 +365,12 @@
 				</h4>
 			</div>
 			<div class="modal-body">
-				电影logo:<input type="file"  @change="getFile(event)"><br>
+				电影logo:<input type="file"  @change="getFile($event)"><br>
 				影院名称:<input v-model="cname"><br>
 				版权信息:<input v-model="ccoperight"><br>
 				影院地址:<input v-model="caddress"><br>
 				影院设施:<input v-model="cfacility"><br>
-				影院照片:<input type="file"  @change="getFile2(event)"><br>
+				影院照片:<input type="file"  @change="getFile2($event)"><br>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -402,13 +402,13 @@
 			
 			<div class="modal-body">
 				<input type="hidden" v-model="cinema.cid" >
-				电影logo:<input type="file"  @change="getFile2(event)"><br>
+				电影logo:<input type="file"  @change="getFile2($event)"><br>
 				营员名称:<input v-model="cinema.cname"><br>
 				版权信息:<input v-model="cinema.ccoperight"><br>
 				影院地址:<input v-model="cinema.caddress"><br>
 				影院设施:<input v-model="cinema.cfacility"><br>
 				<!-- vue里绑定事件如果不传参数，默认的参数名为event，且会默认将当前元素传给事件（不传参与参数名为event等价） -->
-				影院照片:<input type="file"  @change="getFile(event)"><br>
+				影院照片:<input type="file"  @change="getFile($event)"><br>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -443,11 +443,11 @@
 							<td><input ref="check" type="checkbox" @click="addCid(item.cid)"></td>
 							<td>{{item.cid}}</td>
 							<td>{{item.cname}}</td>
-							<td><img :src="item.clogo" width="50px" height="50px"></td>
+							<td><img :src="item.clogo"></td>
 							<td>{{item.ccoperight}}</td>
 							<td>{{item.caddress}}</td>
 							<td>{{item.cfacility}}</td>
-							<td><img :src="item.cpicture" width="50px" height="50px"></td>
+							<td><img :src="item.cpicture"></td>
 							
 								<!-- data-toggle="modal" 控制模态框展示       data-dismiss="modal"  控制模态框消失-->
 							<td><button  ref="p" class="btn btn-warning" type="button" data-toggle="modal" data-target="#myModal" @click="get(item)" >修改</button>
@@ -587,7 +587,8 @@
 						}
 				};
 				axios.put("http://localhost/cinemas",formData,config).then(function(){
-				
+					layer.alert("修改成功");
+					t.find(t.p);
 				})
 			},
 			
@@ -612,10 +613,6 @@
 				this.find(this.p,this.cname);
 			}
 		}
-			
-		
-		
-		
 	});
 	
 	
@@ -659,8 +656,8 @@
 				}; 
 				
 				axios.post("http://localhost/cinemas",formData,config).then(function(data){
-				
-					window.vue.find();
+					layer.alert("添加成功");
+					window.vue.find(window.vue.p);
 				});
 			}
 		}

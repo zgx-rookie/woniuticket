@@ -19,11 +19,10 @@ public class MyFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFf");
 		// 允许指定域访问跨域资源
-		resp.setHeader("Access-Control-Allow-Origin", "http://localhost:8888");
+		//resp.setHeader("Access-Control-Allow-Origin", "http://localhost:9999");
 		// 允许跨域的ajax请求携带cookie
-		resp.setHeader("Access-Control-Allow-Credentials", "true");
+		//resp.setHeader("Access-Control-Allow-Credentials", "true");
 
 		chain.doFilter(request, response);
 	}

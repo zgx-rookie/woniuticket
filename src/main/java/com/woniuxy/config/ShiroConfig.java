@@ -19,7 +19,7 @@ public class ShiroConfig {
 	public DataSource ds() {
 		DruidDataSource ds=new DruidDataSource();
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
-		ds.setUrl("jdbc:mysql:///woniuticket");
+		ds.setUrl("jdbc:mysql:///woniuticket?characterEncoding=utf8");
 		ds.setUsername("root");
 		ds.setPassword("java");
 		return  ds;
@@ -39,9 +39,11 @@ public class ShiroConfig {
 	public JdbcRealm jdbcReallm() {
 		JdbcRealm realm =new JdbcRealm();
 		realm.setDataSource(ds());
-		realm.setAuthenticationQuery("select password,usalt from user where username=?");
-		realm.setUserRolesQuery("select rname from user_role...");
-		realm.setPermissionsQuery("select pname from role_permission...");
+		realm.setAuthenticationQuery("SELECT password,password_salt FROM users WHERE username=?");
+		// 根据用户名查询角色
+		realm.setUserRolesQuery("SELECT rname FROM users_roles ur INNER JOIN users u ON ur.`uid` = u.`uid` INNER JOIN roles r ON ur.rid = r.rid AND username = ?");
+		// 根据角色名查询权限
+		realm.setPermissionsQuery("SELECT pname FROM roles_permissions rp INNER JOIN roles r ON rp.`rid` = r.`rid` INNER JOIN permissions p ON rp.`pid` = p.`pid` AND rname = ?");
 		realm.setSaltStyle(SaltStyle.COLUMN);
 		realm.setCredentialsMatcher(hcm());
 		realm.setPermissionsLookupEnabled(true);

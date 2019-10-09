@@ -181,17 +181,13 @@
 							</a>
 								<ul class="treeview-menu">
 									<li><a href="cinemas.html"><i class="fa fa-angle-right"></i>查看影院信息</a></li>
-									<li><a href="ordertables.html"><i class="fa fa-angle-right"></i>查看影票信息</a></li>
 									<li><a href="usertables.html"><i class="fa fa-angle-right"></i>查看用户信息</a></li>
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>查看订单信息</a></li>
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>查看影院信息</a></li>
-									
+									<li><a href="ordertables.html"><i class="fa fa-angle-right"></i>查看订单信息</a></li>
 								</ul></li>
 							<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
 									<span>放映点管理</span> <i class="fa fa-angle-left pull-right"></i>
 							</a>
 								<ul class="treeview-menu">
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>放映点管理</a></li>
 									<li><a href="roomseatTable.html"><i class="fa fa-angle-right"></i>展厅管理</a></li>
 								</ul></li>
 
@@ -199,8 +195,7 @@
 									<span>影片管理</span> <i class="fa fa-angle-left pull-right"></i>
 							</a>
 								<ul class="treeview-menu">
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>影片列表</a></li>
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>排片信息</a></li>
+									<li><a href="movieTable.html"><i class="fa fa-angle-right"></i>影片列表</a></li>
 								</ul></li>
 							<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
 									<span>日志系统</span> <i class="fa fa-angle-left pull-right"></i>
@@ -493,13 +488,6 @@
 								<button @click="saveRoom">添加</button>
 							</div>
 
-							<div id="updateDiv" v-show="flag">
-								<input type="hidden" v-model="u_rid" /> <input type="hidden"
-									v-model="u_cid" /> rname<input type="text" v-model="u_rname" />
-								rcount<input type="text" v-model="u_rcount" />
-								<button @click="updateRoom">确认修改</button>
-
-							</div>
 
 
 							<table class="table">
@@ -516,8 +504,38 @@
 									<td>{{item.rname}}</td>
 									<td>{{item.rcount}}</td>
 									<td><a class="btn btn-warning" @click="delSeatAndRoom(item.rid)">删除</a>
-										| <a class="btn btn-success" @click="updateRoomUI(item)">修改</a>
+										<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" @click="updateRoomUI(item)">
+											 修改
+											</button>
+											<!-- 模态框（Modal） -->
+											<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											 <div class="modal-dialog">
+											  <div class="modal-content">
+											   <div class="modal-header">
+											    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+											     &times;
+											    </button>
+											    <h4 class="modal-title" id="myModalLabel">
+											    </h4>
+											   </div>
+											   <div class="modal-body">
+											     <div id="updateDiv" v-show="flag">
+													<input type="hidden" v-model="u_rid" /> <input type="hidden"
+														v-model="u_cid" /> rname<input type="text" v-model="u_rname" />
+													rcount<input type="text" v-model="u_rcount" />
 
+							                     </div>
+											   </div>
+											   <div class="modal-footer">
+											    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+											    </button>
+											    <button type="button" class="btn btn-primary" @click="updateRoom" data-dismiss="modal">
+											     确认修改</
+											    </button>
+											   </div>
+											  </div><!-- /.modal-content -->
+											 </div><!-- /.modal -->
+											</div>
 
 									</td>
 
@@ -731,6 +749,7 @@
 									//删除放映室的条件（先删除座位）
 									delRoom(rid){
 										this.$http.post("http://localhost/rooms",{"rid":rid,"_method":"delete"}, {emulateJSON:true}).then(function(){
+											layer.msg('删除成功');
 											this.find(this.pages.p);
 										});
 									},
@@ -755,8 +774,8 @@
 										var json = {rid:this.u_rid,cid:this.u_cid, rname:this.u_rname, rcount:this.u_rcount,"_method":"put"};
 										this.$http.post("http://localhost/rooms",json, {emulateJSON:true}).then(function() {
 											this.find(this.pages.p);
-										});
 										layer.alert('修改成功', {icon: 6});
+										});
 									},
 									
 									//删除放映室和座位
@@ -823,13 +842,10 @@
 					
 		<!--footer-->
 		<div class="footer">
-			<p>
-				Copyright &copy; 2018.Company name All rights reserved.More
-				Templates <a href="http://www.cssmoban.com/" target="_blank"
-					title="模板之家">蜗牛影院</a> - Collect from <a
-					href="http://www.cssmoban.com/" title="网页模板" target="_blank">蜗牛影院</a>
-			</p>
-		</div>
+		  Copyright &copy; 2019.Company name All rights reserved.More
+				Templates <a href="http://www.woniuxy.com/" target="_blank"
+					title="蜗牛影院">蜗牛影院</a>
+	   </div>
 		<!--//footer-->
 	</div>
 

@@ -19,7 +19,7 @@ public class WebConfig implements WebMvcConfigurer {
 	public void addCorsMappings(CorsRegistry registry) {
 		// 参数registry是SpringBoot框架传入的，我们可以直接调用
 		registry.addMapping("/**")  // 允许指定的域名可以访问当前应用中的所有url
-			.allowedOrigins("http://localhost:8888")   // 允许指定的域名(9999)，来访问当前的应用(8888)
+			.allowedOrigins("http://localhost:9999")   // 允许指定的域名(9999)，来访问当前的应用(8888)
 			.allowedMethods("POST","GET","PUT","DELETE", "OPTIONS")  // 允许指定的域名(9999)，通过指定的请求方式来访问当前的应用。
 			.allowCredentials(true);  // 允许客户端ajax请求携带cookie
 	}
