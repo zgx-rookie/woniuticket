@@ -261,7 +261,11 @@ button::-moz-focus-inner {
 .login input[type="text"],.login input[type="password"]{
 	width:90%;
 	padding:5px;
+<<<<<<< HEAD
 	margin:3px 0;x
+=======
+	margin:3px 0;
+>>>>>>> branch 'master' of git@github.com:zgx-rookie/woniuticket.git
 	border: 1px solid #a63d56;
 	outline: none !important;
 }

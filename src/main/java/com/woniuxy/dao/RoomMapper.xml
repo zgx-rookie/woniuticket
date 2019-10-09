@@ -193,4 +193,28 @@
       rcount = #{rcount,jdbcType=INTEGER}
     where rid = #{rid,jdbcType=INTEGER}
   </update>
+  
+
+
+
+
+
+
+
+
+  
+  <insert id="save" parameterType="com.woniuxy.domain.Room">
+  	 insert into Room(rid, cid, rname, rcount)
+  	 values(#{rid}, #{cid}, #{rname}, #{rcount})
+  </insert>
+  
+  <select id="findBySize" parameterType="com.woniuxy.domain.Room" resultMap="BaseResultMap">
+  	select * from room limit #{startLine},#{size}
+  </select>
+  
+  <select id="selectCount" resultType="int">
+  	select count(rid) from room
+  </select>
+  
+  
 </mapper>

@@ -4,7 +4,7 @@ import lombok.Data;
 
 
 
-@Data       
+@Data      
 public class Cinema {
     private Integer cid; 
 
@@ -28,4 +28,7 @@ public class Cinema {
 
    private Integer movid;
    private Double mprice;
+
+
+
 }

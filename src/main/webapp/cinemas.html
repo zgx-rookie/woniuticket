@@ -52,9 +52,13 @@
 
 <style type="text/css">
 
-	.state1{color:red}
+	.state1{
+		color:red;
+	}
 
-	.state2{color:orange}
+	.state2{
+		color:blue;
+	}
 
 </style>
 
@@ -87,9 +91,9 @@
 									<span>影院管理</span> <i class="fa fa-angle-left pull-right"></i>
 							</a>
 								<ul class="treeview-menu">
-									<li><a href="cinemas.html"><i class="fa fa-angle-right"></i>查看影院信息</a></li>
-									<li><a href="ordertables.html"><i class="fa fa-angle-right"></i>查看影票信息</a></li>
-									<li><a href="usertables.html"><i class="fa fa-angle-right"></i>查看用户信息</a></li>
+									<li><a href="tables.html"><i class="fa fa-angle-right"></i>查看影院信息</a></li>
+									<li><a href="tables.html"><i class="fa fa-angle-right"></i>查看影票信息</a></li>
+									<li><a href="tables.html"><i class="fa fa-angle-right"></i>查看用户信息</a></li>
 									<li><a href="tables.html"><i class="fa fa-angle-right"></i>查看订单信息</a></li>
 									<li><a href="tables.html"><i class="fa fa-angle-right"></i>查看影院信息</a></li>
 								</ul></li>
@@ -98,7 +102,7 @@
 							</a>
 								<ul class="treeview-menu">
 									<li><a href="tables.html"><i class="fa fa-angle-right"></i>放映点管理</a></li>
-									<li><a href="tables.html"><i class="fa fa-angle-right"></i>展厅管理</a></li>
+									<li><a href="roomseatTable.html"><i class="fa fa-angle-right"></i>展厅管理</a></li>
 								</ul></li>
 
 							<li class="treeview"><a href="#"> <i class="fa fa-table"></i>
@@ -403,6 +407,7 @@
 				版权信息:<input v-model="cinema.ccoperight"><br>
 				影院地址:<input v-model="cinema.caddress"><br>
 				影院设施:<input v-model="cinema.cfacility"><br>
+				<!-- vue里绑定事件如果不传参数，默认的参数名为event，且会默认将当前元素传给事件（不传参与参数名为event等价） -->
 				影院照片:<input type="file"  @change="getFile(event)"><br>
 			</div>
 			<div class="modal-footer">
@@ -416,7 +421,8 @@
 	</div><!-- /.modal -->
 </div>
 						<div id="cinema">
-						影院名称:<input v-model="cname"/><button type="button" @click="search">搜索</button>
+						影院名称:<input v-model="cname"/><button class="btn btn-primary" type="button" @click="search">搜索</button><br>
+						<button class="btn btn-danger" type="button" @click="del">删除</button><br>
 						<table class="table">
 							<thead>
 								<tr>
@@ -434,6 +440,7 @@
 							
 							<tr v-for="item in list">
 							<td></td>
+							<td><input ref="check" type="checkbox" @click="addCid(item.cid)"></td>
 							<td>{{item.cid}}</td>
 							<td>{{item.cname}}</td>
 							<td><img :src="item.clogo" width="50px" height="50px"></td>
@@ -443,21 +450,21 @@
 							<td><img :src="item.cpicture" width="50px" height="50px"></td>
 							
 								<!-- data-toggle="modal" 控制模态框展示       data-dismiss="modal"  控制模态框消失-->
-							<td><button  ref="p" class="btn btn-warning" type="button" data-toggle="modal" data-target="#myModal" @click="get(item)" >修改</button> | <button class="btn btn-danger" type="button" @click="del(item.cid)">删除</button> </td>
+							<td><button  ref="p" class="btn btn-warning" type="button" data-toggle="modal" data-target="#myModal" @click="get(item)" >修改</button>
 							</tr>
 							<tr>
 							
 							<th colspan="7">
-								<button type="button" @click="first">首页 </button>
-								<button type="button"  @click="prev">上一页</button>
+								<button class="btn btn-info" type="button" @click="first">首页 </button>
+								<button class="btn btn-info" type="button"  @click="prev">上一页</button>
 								<font ref="skip">
-									<a v-for="n in num" :class="[flag?'state1':'state2']">
-									<button v-model="n1==page.page?flag=true:flag=false" size="1" @click="nowPage">{{n+"\t"}}</button>
+									<a v-for="n in num" :class="[n==page.p?'state1':'stata2']">
+									<button class="btn"  @click="nowPage">{{n+"\t"}}</button>
 									</a>
 								</font>
 								
-								<button type="button"  @click="next">下一页</button>
-								<button type="button" @click="last">末页</button>
+								<button class="btn btn-info" type="button"  @click="next">下一页</button>
+								<button class="btn btn-info" type="button" @click="last">末页</button>
 							</th>
 							
 							</tr>
@@ -485,6 +492,7 @@
 	var vue =new Vue({
 		el:"#cinema",
 		data:{
+			delArray:[],
 			cname:"",
 			n1:"",
 			flag:true,
@@ -514,14 +522,35 @@
 				});
 			},
 			
-			del(cid){
+			
+			
+			addCid(cid){
 				var t=this;
-				axios.delete("http://localhost/cinemas",{data : {"cid":cid}}).then(function(){
-					
+				var flag=true;
+				for(var i=0;i<=t.delArray.length;i++){
+					if(t.delArray[i]==cid){
+						flag=false;
+						t.delArray.splice(i,1);
+						break;
+					}
+				}
+				if(flag)t.delArray.push(cid);
+			},
+			
+			del(){
+				
+				
+				 var t=this;
+				
+				axios.delete("http://localhost/cinemas",{data : {"cidArray":t.delArray}}).then(function(){
+					for(var i=0;i<t.$refs.check.length;i++){
+						if(t.$refs.check[i].checked==true)t.$refs.check[i].checked=false;
+					}
+					t.delArray=[];
 					layer.alert("删除成功");
+					t.find(t.page.p,this.cname);
 					
-					t.find(t.page.page,this.cname);
-				})
+				})  
 			},
 			
 			get(cinema){
@@ -573,12 +602,9 @@
 			search(){
 				this.find(this.p,this.cname);
 			},
-			nowPage(){
-
-				console.log(this.$refs.p.currentTarget.innerHTML)
-
-				console.log(this.$refs.p.innerHTML)
-
+			nowPage(e){
+				this.p=e.currentTarget.innerHTML;
+				this.find(this.p,this.cname);
 			}
 		}
 			

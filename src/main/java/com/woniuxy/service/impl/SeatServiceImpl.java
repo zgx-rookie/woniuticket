@@ -1,6 +1,8 @@
 package com.woniuxy.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,7 @@ public class SeatServiceImpl implements ISeatService {
 
 	@Override
 	public void save(Seat seat) {
-		mapper.insertSelective(seat);
+		mapper.insert(seat);
 		
 	}
 
@@ -35,15 +37,39 @@ public class SeatServiceImpl implements ISeatService {
 		mapper.selectByPrimaryKey(sid);
 	}
 
-	@Override
-	public List<Seat> findAll() {
-		return mapper.selectByExample(null);
-		
-	}
 
 	@Override
 	public void update(Seat seat) {
 		mapper.updateByPrimaryKeySelective(seat);
 	}
+
+
+	@Override
+	public void delByRid(Integer rid) {
+		mapper.delByRid(rid);
+	}
+
+	@Override
+	public List<Map> select(Integer rid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Seat> findSeats(Integer rid) {
+		System.out.println("1111111111111111111111111");
+		List<Seat> list=mapper.findByRid(rid);
+		for (Seat seat : list) {
+//			System.out.println(seat);
+		}
+		System.out.println(list);
+		return list;
+	}
+
+	
+	
+	
+
+
 
 }

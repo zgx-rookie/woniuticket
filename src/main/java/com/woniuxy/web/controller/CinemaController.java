@@ -23,9 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.woniuxy.domain.Cinema;
 import com.woniuxy.domain.Page;
-
 import com.woniuxy.service.ICinemaService;
-
 
 @Controller
 @RequestMapping("cinemas")
@@ -38,7 +36,7 @@ public class CinemaController {
 	@ResponseBody
 	public void save(@RequestBody MultipartFile logo,MultipartFile pinfo,Cinema cinema,HttpServletRequest req) throws IOException, InterruptedException {
 		
-		String realPath=req.getServletContext().getRealPath("/");
+		String realPath=req.getServletContext().getRealPath("/"); 
 		
 		UUID uuid = UUID.randomUUID();
 		UUID uuid2 = UUID.randomUUID();
@@ -76,13 +74,12 @@ public class CinemaController {
 //		}
 //		return findAll;   
 //	}
-	
+	  
 	
 	@GetMapping
 	@ResponseBody
 	public Page<Cinema> findByPage(@RequestParam Integer page,String cname){
-		System.out.println("123456");
-		System.out.println(page+""+cname);
+		System.out.println(page+"   "+cname);
 		Cinema cinema=new Cinema();
 		cinema.setCname(cname);
 		Page<Cinema> p = service.findByPage(cinema,page,5);
@@ -95,30 +92,52 @@ public class CinemaController {
 	}
 	
 	
+	/*
+	 * @DeleteMapping
+	 * 
+	 * @ResponseBody public void delete(@RequestBody Cinema cinema,
+	 * HttpServletRequest req) { String
+	 * realPath=req.getServletContext().getRealPath("/"); Integer cid =
+	 * cinema.getCid(); System.out.println(cid); Cinema c=service.findOne(cid);
+	 * 
+	 * System.out.println(c); String pinfo = c.getCpicture(); String
+	 * clogo=c.getClogo();
+	 * 
+	 * //pinfo和clogo 所在的位置 String pinfoStr=realPath+pinfo; String
+	 * clogoStr=realPath+clogo;
+	 * 
+	 * File pFile=new File(pinfoStr); File cFile=new File(clogoStr);
+	 * System.out.println(pFile+"        "+cFile); boolean f1 = pFile.delete();
+	 * boolean f2 = cFile.delete(); System.out.println(f1+"      "+f2);
+	 * service.delete(cid); }
+	 */
+	
+	
 	@DeleteMapping
 	@ResponseBody
-	public void delete(@RequestBody Cinema cinema, HttpServletRequest req) {
-		String realPath=req.getServletContext().getRealPath("/");
-		Integer cid = cinema.getCid();
-		System.out.println(cid);
-		Cinema c=service.findOne(cid);
-	
-		System.out.println(c);
-		String pinfo = c.getCpicture();
-		String clogo=c.getClogo();
-		
-		//pinfo和clogo 所在的位置
-		String pinfoStr=realPath+pinfo;
-		String clogoStr=realPath+clogo;
-		
-		File pFile=new File(pinfoStr);
-		File cFile=new File(clogoStr);
-		System.out.println(pFile+"        "+cFile);
-		boolean f1 = pFile.delete();
-		boolean f2 = cFile.delete();
-		System.out.println(f1+"      "+f2);
-		service.delete(cid);
+	public void delete(@RequestBody String cidArray, HttpServletRequest req) {
+		String cidStr=cidArray.substring(cidArray.lastIndexOf("[")+1, cidArray.lastIndexOf("]"));
+		String[] cids = cidStr.split(",");
+		for (String cid1: cids) {
+			Integer cid=Integer.parseInt(cid1);
+			System.out.println(cid);
+			Cinema cinema = service.findOne(cid);
+			String clogo = cinema.getClogo();
+			String cpicture = cinema.getCpicture();
+			String realPath = req.getServletContext().getRealPath("/");
+			
+			//clogo与cpicture的具体为止
+			String clogoStr=realPath+clogo;
+			String cpictureStr=realPath+cpicture;
+			
+			//删除改图
+			new File(clogoStr).delete();
+			new File(cpictureStr).delete();
+			
+			service.delete(cid);
+		}
 	}
+	
 	@PutMapping
 	@ResponseBody
 	public void updata(@RequestBody MultipartFile logo,MultipartFile picture,Cinema cinema,HttpServletRequest req) throws IllegalStateException, IOException {

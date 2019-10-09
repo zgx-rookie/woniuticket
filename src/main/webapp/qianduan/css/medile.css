@@ -257,9 +257,15 @@ i.glyphicon.glyphicon-play-circle {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+<<<<<<< HEAD
 	-webkit- border-radius: 50%;
 	-0- border-radius: 50%;
 	-moz- border-radius: 50%;
+=======
+	-webkit-border-radius: 50%;
+	-0-border-radius: 50%;
+	-moz-border-radius: 50%;
+>>>>>>> branch 'master' of git@github.com:zgx-rookie/woniuticket.git
 }
 .ribben p {
     font-size:0.9em;

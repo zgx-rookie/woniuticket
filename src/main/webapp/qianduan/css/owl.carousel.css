@@ -56,7 +56,11 @@
 
 /* mouse grab icon */
 .grabbing { 
+<<<<<<< HEAD
     cursor:url(grabbing.png) 8 8, move;
+=======
+   /* cursor:url(grabbing.png) 8 8, move;*/
+>>>>>>> branch 'master' of git@github.com:zgx-rookie/woniuticket.git
 }
 
 /* fix */
